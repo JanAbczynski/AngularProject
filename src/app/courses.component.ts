@@ -12,7 +12,8 @@ import { Component } from '@angular/core';
     </ul>
     <img src="{{ imageUrl }}" />
     <img [src]="imageUrl" />
-    <button class="btn btn-primary">button</button>
+    <button class="btn btn-primary" [class.active]="isActive">button</button>
+    <button [style.backgroundColor]="isActive ? 'blue' : 'white'">button2</button>
     <table>
         <tr>
             <td [attr.colspan]="colSpan">xx</td>
@@ -22,6 +23,7 @@ import { Component } from '@angular/core';
     `
 })
 export class CoursesComponent {
+    isActive = false;
     coalSpan = 2;
     title = "List of courses";
     imageUrl = "http://lorempixel.com/400/200";
