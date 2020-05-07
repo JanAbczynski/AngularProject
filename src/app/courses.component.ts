@@ -12,9 +12,10 @@ import { Component } from '@angular/core';
     </ul>
     <img src="{{ imageUrl }}" />
     <img [src]="imageUrl" />
+    <button class="btn btn-primary">button</button>
     <table>
         <tr>
-            <td [attr.colspan]="colSpan">x</td>
+            <td [attr.colspan]="colSpan">xx</td>
         </tr>
     </table>
     
