@@ -10,10 +10,20 @@ import { Component } from '@angular/core';
             {{ course }}
         </li>
     </ul>
+    <img src="{{ imageUrl }}" />
+    <img [src]="imageUrl" />
+    <table>
+        <tr>
+            <td [attr.colspan]="colSpan">x</td>
+        </tr>
+    </table>
+    
     `
 })
 export class CoursesComponent {
+    coalSpan = 2;
     title = "List of courses";
+    imageUrl = "http://lorempixel.com/400/200";
     courses;
 
     constructor (service: CoursesService){
