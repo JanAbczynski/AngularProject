@@ -4,31 +4,23 @@ import { Component  } from '@angular/core'
 @Component({
     selector: 'courses',
     template: `
-        <div (click)="onDivClick()">
-            <button (click)="onSave($event)">Save</button>
-        </div>
-        <div>
-            <input [(ngModel)]="email" (keyup.enter)="onKeyUp()" />
-        </div>
+    {{ course.title | uppercase}} <br/>
+    {{ course.students | number}} <br/>
+    {{ course.rating | number:'2.2-2' }} <br/>
+    {{ course.price | currency:'PLN ':true:'3.2-2' }} <br/>
+    {{ course.releaseDate | date:'shortDate' }} <br/>
         `
 })
 
 export class CoursesComponent {
-    email = "sss";
 
-    onDivClick(){
-        console.log("Div click")
+    course = {
+        title: "The title",
+        rating: 4.1,
+        students: 101200,
+        price: 130.23,
+        releaseDate: new Date(2015, 12, 22)
     }
-
-    onKeyUp(){
-        console.log(this.email);
-    }
-
-    onSave($event){
-        $event.stopPropagation();
-        console.log('asd');
-    }
-
 
 
 }
