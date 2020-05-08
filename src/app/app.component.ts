@@ -12,4 +12,8 @@ export class AppComponent {
   }
 
   title = 'Angular app';
+
+  onFavoriteChange(){
+    console.log("fovoriata")
+  }
 }
