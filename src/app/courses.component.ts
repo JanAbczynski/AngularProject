@@ -8,7 +8,7 @@ import { Component  } from '@angular/core'
             <button (click)="onSave($event)">Save</button>
         </div>
         <div>
-            <input (keyup)="onKeyUp($event)" />
+            <input (keyup.shift.arrowleft)="onKeyUp()" />
         </div>
         `
 })
@@ -19,8 +19,8 @@ export class CoursesComponent {
                 console.log("Div click")
     }
 
-    onKeyUp($event){
-        if ($event.keyCode === 13) console.log("ENTER was pressed");
+    onKeyUp(){
+        console.log("ENTER was pressed");
     }
 
     onSave($event){
