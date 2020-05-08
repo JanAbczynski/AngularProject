@@ -8,7 +8,7 @@ import { Component  } from '@angular/core'
             <button (click)="onSave($event)">Save</button>
         </div>
         <div>
-            <input (keyup.shift.arrowleft)="onKeyUp()" />
+            <input (keyup.enter)="onKeyUp($event)" />
         </div>
         `
 })
@@ -19,8 +19,8 @@ export class CoursesComponent {
                 console.log("Div click")
     }
 
-    onKeyUp(){
-        console.log("ENTER was pressed");
+    onKeyUp($event){
+        console.log($event.target.value);
     }
 
     onSave($event){
