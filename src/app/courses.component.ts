@@ -8,7 +8,7 @@ import { Component  } from '@angular/core'
             <button (click)="onSave($event)">Save</button>
         </div>
         <div>
-            <input [value]="email" (keyup.enter)="email = $event.target.value; onKeyUp()" />
+            <input [(ngModel)]="email" (keyup.enter)="onKeyUp()" />
         </div>
         `
 })
@@ -25,7 +25,7 @@ export class CoursesComponent {
     }
 
     onSave($event){
-        // @event.stopPropagation();
+        $event.stopPropagation();
         console.log('asd');
     }
 
