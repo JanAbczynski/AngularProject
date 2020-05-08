@@ -8,19 +8,20 @@ import { Component  } from '@angular/core'
             <button (click)="onSave($event)">Save</button>
         </div>
         <div>
-            <input #email (keyup.enter)="onKeyUp(email.value)" />
+            <input [value]="email" (keyup.enter)="email = $event.target.value; onKeyUp()" />
         </div>
         `
 })
 
 export class CoursesComponent {
+    email = "sss";
 
     onDivClick(){
-                console.log("Div click")
+        console.log("Div click")
     }
 
-    onKeyUp(email){
-        console.log(email);
+    onKeyUp(){
+        console.log(this.email);
     }
 
     onSave($event){
