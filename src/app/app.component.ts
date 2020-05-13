@@ -13,12 +13,8 @@ export class AppComponent {
   listMode = false;
 
 
-  courses = [
-    {id: 1, name: "course 1"},
-    {id: 2, name: "course 2"},
-    {id: 3, name: "course 3"}
+  courses;
     
-  ];
   
   post = {
     title: "Title of post",
@@ -26,6 +22,14 @@ export class AppComponent {
   }
  
   title = 'Angular app';
+
+  loadCourses(){
+    this.courses = [
+      {id: 1, name: "course 1"},
+      {id: 2, name: "course 2"},
+      {id: 3, name: "course 3"}
+    ]
+  };
 
   onAdd(){
     this.courses.push({ id: 4, name: 'course 4'})
@@ -42,6 +46,10 @@ export class AppComponent {
 
   onFavoriteChange(eventArgs: {newValue: FavoriteChangedEventArgs}){
     console.log("fovoriataa", eventArgs)
+  }
+
+  trackCourse(index, course) {
+    return course ? course.id : undefined;
   }
 
 

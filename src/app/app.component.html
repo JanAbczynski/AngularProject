@@ -13,12 +13,13 @@
     <div *ngSwitchDefoult>Otherwise</div>
 </div>
 
+<button (click)=loadCourses()>Load</button>
 <button (click)="onAdd()">Add</button>
 <ul>
-    <li *ngFor="let course of courses; even as isEven; index as i">
+    <li *ngFor="let course of courses; even as isEven; index as i; trackBy: trackCourse">
         {{i + 1}} -- {{course.name}} <span *ngIf="isEven">(EVEN)</span>
         <button (click)=remove(course)>remove</button>
-        <button (click)=change(course)>change</button>
+        <button (click)="change(course)">change</button>
 
     </li>
 </ul>
