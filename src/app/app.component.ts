@@ -8,7 +8,17 @@ import { FavoriteChangedEventArgs } from './favorite/favorite.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  courses = [1,2];
+  // viewMode = 'list';
+  mapMode = true;
+  listMode = false;
+
+
+  courses = [
+    {id: 1, name: "course 1"},
+    {id: 2, name: "course 2"},
+    {id: 3, name: "course 3"}
+    
+  ];
   
   post = {
     title: "Title of post",
@@ -17,7 +27,22 @@ export class AppComponent {
  
   title = 'Angular app';
 
+  onAdd(){
+    this.courses.push({ id: 4, name: 'course 4'})
+  }
+
+  remove(course){
+    let index = this.courses.indexOf(course);
+    this.courses.splice(index,1);
+  }
+
+  change(course){
+    course.name = 'UPdated';
+  }
+
   onFavoriteChange(eventArgs: {newValue: FavoriteChangedEventArgs}){
     console.log("fovoriataa", eventArgs)
   }
+
+
 }
