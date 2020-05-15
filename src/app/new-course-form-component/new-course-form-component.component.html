@@ -1,3 +1,12 @@
-<p>
-  new-course-form-component works!
-</p>
+<form [formGroup]="form">
+  <input formControlName="name">
+  <div formGroupName="name">
+    <input formControlName="email" />
+    <input formControlName="phone" />
+  </div>
+  <ul>
+    <li *ngFor="let topic of topics.controls">
+      {{ topic.value }}
+    </li>
+  </ul>
+</form>

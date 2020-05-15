@@ -9,19 +9,11 @@ import { NG_MODEL_WITH_FORM_CONTROL_WARNING } from '@angular/forms/src/directive
 })
 export class NewCourseFormComponentComponent {
 
-  foorm = new FormGroup({
-    name: new FormControl('', Validators.required),
-    contact: new FormGroup({
-      email: new FormControl(),
-      phone: new FormControl()
-    }),
-    topics: new FormArray([])
-  });
                   
-
+  form;
 
   constructor(fb: FormBuilder){
-    fb.group({
+     this.form = fb.group({
       name: ['', Validators.required],
       contact: fb.group({
         email: [],
