@@ -11,6 +11,7 @@ import { FavoriteComponent } from './favorite/favorite.component';
 import { PanelComponent } from './panel/panel.component';
 import { InputFormatDirective } from './input-format.directive';
 import { ContactFormComponent } from './contact-form/contact-form.component';
+import { NewCourseFormComponentComponent } from './new-course-form-component/new-course-form-component.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
     FavoriteComponent,
     PanelComponent,
     InputFormatDirective,
-    ContactFormComponent
+    ContactFormComponent,
+    NewCourseFormComponentComponent
   ],
   imports: [
     BrowserModule,
