@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { CoursesService } from './courses.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,6 +13,7 @@ import { PanelComponent } from './panel/panel.component';
 import { InputFormatDirective } from './input-format.directive';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { NewCourseFormComponentComponent } from './new-course-form-component/new-course-form-component.component';
+import { PostsComponent } from './posts-component/posts.component';
 
 @NgModule({
   declarations: [
@@ -24,12 +26,14 @@ import { NewCourseFormComponentComponent } from './new-course-form-component/new
     PanelComponent,
     InputFormatDirective,
     ContactFormComponent,
-    NewCourseFormComponentComponent
+    NewCourseFormComponentComponent,
+    PostsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     CoursesService
