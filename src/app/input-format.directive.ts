@@ -5,7 +5,7 @@ import { Directive, HostListener, ElementRef, Input } from '@angular/core';
 })
 export class InputFormatDirective {
   @Input('format') format;
-  constructor(private el: ElementRef) { }
+  constructor(private el : ElementRef) { }
 
   @HostListener('focus') onFocus(){
     console.log("on Focus");
