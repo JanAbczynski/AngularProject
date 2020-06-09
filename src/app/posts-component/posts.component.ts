@@ -33,6 +33,76 @@ export class PostsComponent implements OnInit {
     this.postService.getPosts().subscribe(posts => {console.log("posts"); this.posts = posts})
   }
 
+  deletePost(post){
+    console.log("delete: ", this.url +"/"+ post.id)
+    this.http.delete(this.url + "/" + post.id)
+    .subscribe(val => 
+      {
+        console.log("DELETED");
+        this.getPosts()
+
+      });
+  }
+
+  patchPost(post){
+
+    var myNewPost = 
+    {
+    Id: null,
+    HowTo: "newXXXXXXX",
+    Line: "newXXXXXXXXX",
+    Platform: "newPlatform"
+    } 
+
+    console.log("patch post: ", post)
+
+    var fullUrl = this.url + "/" + post.id
+    console.log(fullUrl)
+
+    this.http.patch(fullUrl, myNewPost)
+    .subscribe(val => 
+      {
+        console.log("PATCHED");
+        this.getPosts()
+      });
+
+  }
+
+  updatePost(post){
+    // console.log("post: ", post.id);
+    
+
+    var myNewPost = 
+    {
+    // id: null,
+    // userId: null,
+    // title: titleInput.value,
+    // body: null
+  
+    Id: null,
+    HowTo: "newXX",
+    Line: "newXX",
+    Platform: "newPlatform"
+  
+    }   
+
+    this.http.put(this.url + "/" + post.id, myNewPost)
+    .subscribe(val => 
+      {
+        console.log("PUT call successful value returned in body", val);
+        this.getPosts()
+
+      });
+
+
+      
+  }
+
+  delPosts(postId: number){
+    console.log("del")
+    console.log(postId)
+  }
+
   createPost() {
 
     const data: Post = {
@@ -77,17 +147,20 @@ export class PostsComponent implements OnInit {
     .subscribe(response => {
       this.getPosts();
     });
-
-
     // this.posts.splice(0, 0, myNewPost);
     // this.posts.push(myNewPost) 
-    
-
   }
 
 
 
   ngOnInit() {
+    console.log("OnInit")
   }
 
+
+  ngOnChange(){
+    
+    console.log("on Change")
+  }
+    
 }

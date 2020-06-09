@@ -10,7 +10,6 @@ import { CourseComponent } from './course/course.component';
 import { SummaryPipe } from './summary.pipe';
 import { FavoriteComponent } from './favorite/favorite.component';
 import { PanelComponent } from './panel/panel.component';
-import { InputFormatDirective } from './input-format.directive';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { NewCourseFormComponentComponent } from './new-course-form-component/new-course-form-component.component';
 import { PostsComponent } from './posts-component/posts.component';
@@ -24,7 +23,6 @@ import { PostsComponent } from './posts-component/posts.component';
     SummaryPipe,
     FavoriteComponent,
     PanelComponent,
-    InputFormatDirective,
     ContactFormComponent,
     NewCourseFormComponentComponent,
     PostsComponent
