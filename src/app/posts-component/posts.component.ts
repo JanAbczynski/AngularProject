@@ -18,86 +18,80 @@ export class PostsComponent implements OnInit {
   test: any;
 
   // url = 'http://jsonplaceholder.typicode.com';
-  url = 'https://localhost:5001/api/commands';
+  // url = 'https://localhost:5001/api/commands';
 
   posters = [
     { name: "john" },
     { name: "jim" }
   ]
 
-  constructor(private http: HttpClient, private postService: PostService) {
+  // constructor(private http: HttpClient, private postService: PostService) {
+  constructor(private postService: PostService) {
     this.getPosts()
   }
 
   getPosts(){
-    this.postService.getPosts().subscribe(posts => {console.log("posts"); this.posts = posts})
+    this.postService.getPosts().subscribe(
+      posts => 
+        {console.log("posts"); this.posts = posts}, 
+      (error: Response) => {
+        if(error.status === 500){
+          alert("error 500");
+        } else {
+          alert("Can not load because of something...");
+        console.log("ERROR unxpected");        
+        }
+      })
   }
 
   deletePost(post){
-    console.log("delete: ", this.url +"/"+ post.id)
-    this.http.delete(this.url + "/" + post.id)
-    .subscribe(val => 
+    
+
+    this.postService.deletePost(post.id)
+    .subscribe(
+      val => 
       {
         console.log("DELETED");
         this.getPosts();
-      }, error => {
-        alert("ERROR on delete");
-        console.log("ERROR console");
+      }, 
+      (error: Response) => {
+        if(error.status === 404){
+          alert("Already deleted");
+        } else {
+          alert("ERROR unxpected");
+        console.log("ERROR unxpected");        
+        }
+
       });
   }
 
   patchPost(post){
 
-    var myNewPost = 
-    {
-    Id: null,
-    HowTo: "newXXXXXXX",
-    Line: "newXXXXXXXXX",
-    Platform: "newPlatform"
-    } 
-
-    console.log("patch post: ", post)
-
-    var fullUrl = this.url + "/" + post.id
-    console.log(fullUrl)
-
-    this.http.patch(fullUrl, myNewPost)
+    this.postService.patchPost(post.id)
     .subscribe(val => 
       {
         console.log("PATCHED");
         this.getPosts()
+      }, error => {
+        alert("ERROR on delete");
+        console.log("ERROR console");
       });
 
   }
 
   updatePost(post){
-    // console.log("post: ", post.id);
-    
 
-    var myNewPost = 
-    {
-    // id: null,
-    // userId: null,
-    // title: titleInput.value,
-    // body: null
-  
-    Id: null,
-    HowTo: "newXX",
-    Line: "newXX",
-    Platform: "newPlatform"
-  
-    }   
-
-    this.http.put(this.url + "/" + post.id, myNewPost)
-    .subscribe(val => 
+    this.postService.updatePost(post.id)
+    .subscribe(
+      val => 
       {
         console.log("PUT call successful value returned in body", val);
         this.getPosts()
-
-      });
-
-
-      
+      }, 
+      error => {
+        alert("ERROR on delete");
+        console.log("ERROR console");
+      });    
   }
 
   delPosts(postId: number){
@@ -105,52 +99,24 @@ export class PostsComponent implements OnInit {
     console.log(postId)
   }
 
-  createPost() {
-
-    const data: Post = {
-      // id: null,
-      // userId: 223,
-      // title: 'my new',
-      // body: 'hello'
-
-      Id: 4,
-      HowTo: "newHowTo",
-      Line: "new line",
-      Platform: "newPlatform"
-    }
-
-    this.newPost = this.http.post<Post>(this.url, data).
-    // this.newPost = this.http.post<Post>(this.url + '/posts', data).
-      pipe(map(post => post))
-    console.log('postpost' + this.newPost)
-  }
-
   createNewPost(titleInput: HTMLInputElement) {
-    let myNewPost: Post;
-    myNewPost = 
-      {
-      // id: null,
-      // userId: null,
-      // title: titleInput.value,
-      // body: null
-    
-      Id: null,
-      HowTo: titleInput.value,
-      Line: "new line",
-      Platform: "newPlatform"
-    
-    }
 
-    console.log(titleInput.value)
-    console.log(myNewPost)
 
-    // this.http.post<Post>(this.url + '/post', myNewPost)
-    this.http.post<Post>(this.url, myNewPost)
-    .subscribe(response => {
+    this.postService.createNewPost(titleInput)
+    .subscribe(
+    response => {
       this.getPosts();
+    }, 
+    (error: Response) => {
+      if(error.status === 400){
+        alert("error 400")
+      } else {
+        alert("ERROR on delete");
+        console.log("ERROR console");        
+      }
+
     });
-    // this.posts.splice(0, 0, myNewPost);
-    // this.posts.push(myNewPost) 
+
   }
 
 
