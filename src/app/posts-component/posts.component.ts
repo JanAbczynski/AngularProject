@@ -39,8 +39,10 @@ export class PostsComponent implements OnInit {
     .subscribe(val => 
       {
         console.log("DELETED");
-        this.getPosts()
-
+        this.getPosts();
+      }, error => {
+        alert("ERROR on delete");
+        console.log("ERROR console");
       });
   }
 
