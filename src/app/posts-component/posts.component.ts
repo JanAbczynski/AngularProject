@@ -17,17 +17,8 @@ export class PostsComponent implements OnInit {
   newPost: Observable<any>;
   test: any;
 
-  // url = 'http://jsonplaceholder.typicode.com';
-  // url = 'https://localhost:5001/api/commands';
-
-  posters = [
-    { name: "john" },
-    { name: "jim" }
-  ]
-
-  // constructor(private http: HttpClient, private postService: PostService) {
   constructor(private postService: PostService) {
-    this.getPosts()
+    
   }
 
   getPosts(){
@@ -39,7 +30,7 @@ export class PostsComponent implements OnInit {
           alert("error 500");
         } else {
           alert("Can not load because of something...");
-        console.log("ERROR unxpected");        
+          console.log("ERROR unxpected");        
         }
       })
   }
@@ -73,7 +64,7 @@ export class PostsComponent implements OnInit {
         console.log("PATCHED");
         this.getPosts()
       }, error => {
-        alert("ERROR on delete");
+        alert("ERROR on patch");
         console.log("ERROR console");
       });
 
@@ -119,12 +110,10 @@ export class PostsComponent implements OnInit {
 
   }
 
-
-
   ngOnInit() {
     console.log("OnInit")
+    this.getPosts()
   }
-
 
   ngOnChange(){
     

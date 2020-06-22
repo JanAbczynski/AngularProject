@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment.prod';
 import { ValidationErrors } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -11,7 +12,7 @@ import { Post } from '../models/post'
 })
 export class PostService {
   // private url = 'http://jsonplaceholder.typicode.com';
-  url = 'https://localhost:5001/api/commands';
+  url = environment.apiUrl + "/commands";
 
   constructor(private http: HttpClient) {
 
@@ -37,16 +38,30 @@ export class PostService {
     
   }
 
-  patchPost(id){
-    var myNewPost = 
-    {
-    Id: null,
-    HowTo: "newXXXXXXX",
-    Line: "newXXXXXXXXX",
-    Platform: "newPlatform"
-    } 
+  // patchPost(id){
+  //   var myNewPost = 
+  //   {
+  //   Id: null,
+  //   HowTo: "newXXXXXXX",
+  //   Line: "newXXXXXXXXX",
+  //   Platform: "newPlatform"
+  //   } 
+  //   return this.http.patch(this.url + "/" + id, {HowTo: "newXXXXXXX"})
+  // }
 
-    return this.http.patch(this.url + "/" + id, myNewPost)
+  // PATCH one of the heroes' name
+  patchPost (id: number): Observable<{}> {
+  const url = `${this.url}/${id}`;   // PATCH api/heroes/42
+   return this.http.patch(url, 
+    [
+      {
+        "op": "replace",
+        "path": "/Howto",
+        "value": "some new value"
+      }
+    ]
+  );
+
   }
 
 
