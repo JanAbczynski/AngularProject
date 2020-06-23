@@ -1,5 +1,6 @@
+import { TokenInterceptorService } from './service/token-interceptor.service';
 import { PostService } from './service/post.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { CoursesService } from './courses.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -81,7 +82,12 @@ import { LoginComponent } from './login/login.component';
   ],
   providers: [
     PostService,
-    CoursesService
+    CoursesService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

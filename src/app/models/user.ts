@@ -6,4 +6,5 @@ export class User {
 
     UserName: string;
     UserPass: string;
+    token: string
 }

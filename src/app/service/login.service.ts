@@ -16,6 +16,8 @@ s
 
   login(user: User){
 
+
+    console.log(user);
     console.log(user.UserName);
     console.log(user.UserPass);
     console.log(this.url + "/postlogin");

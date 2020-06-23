@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpInterceptor } from '@angular/common/http';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,6 +13,8 @@ import { HttpInterceptor } from '@angular/common/http';
 export class LoginComponent implements OnInit {
 
   constructor(private loginService: LoginService) { }
+
+
 
   ngOnInit() {
   }
@@ -23,15 +26,16 @@ export class LoginComponent implements OnInit {
     user = 
       {
         UserName: name,
-        UserPass: pass
+        UserPass: pass,
+        token: null
       }
     
-
     this.loginService.login(user)
     .subscribe(
-      user => 
+      res => 
       {
-        console.log(user)
+        localStorage.setItem("token", res.token)
+        console.log("token", res.token)
       }, 
       (error: Response) => 
       {
