@@ -13,8 +13,12 @@
 </div>
 
 <div *ngFor="let follower of followers" >
-  <a [routerLink]="['/followers', followers.id]">{{ follower.login }}</a>
+  <a [routerLink]="['/followers', follower.id, follower.login]">{{ follower.login }}</a>
 </div>
+
 <div>
   asdasd
+</div>
+<div *ngFor="let follower of followers" class="media">
+  {{follower.login }} id: {{ follower.id }}
 </div>

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav>
   <div class="container-fluid">
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
@@ -9,10 +9,14 @@
   </div>
 </nav>
 
+<nav>
+
 <div>
   <ul>
-    <li class="active"><a routerLink="/followers">Followers</a></li>
-    <li><a routerLink="/posts">Posts</a></li>
-    <li><a routerLink="/login">Login</a></li>
+    <li routerLinkActive="active"><a routerLink="/followers"
+      [queryParams]="{ page: 1, order: 'newest'}">Followers</a></li>
+    <li routerLinkActive="active"><a routerLink="/posts">Posts</a></li>
+    <li routerLinkActive="active"><a routerLink="/login">Login</a></li>
   </ul>
 </div>
+</nav>

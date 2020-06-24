@@ -15,13 +15,15 @@ import { PanelComponent } from './panel/panel.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { NewCourseFormComponentComponent } from './new-course-form-component/new-course-form-component.component';
 import { PostsComponent } from './posts-component/posts.component';
-import { RouterModule } from '@angular/router'
+import { RouterModule, } from '@angular/router'
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { GithubProfileComponent } from './github-profile/github-profile.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { GithubFollowersComponent } from './github-followers/github-followers.component';
 import { LoginComponent } from './login/login.component';
+import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
+
 
 
 @NgModule({
@@ -55,7 +57,7 @@ import { LoginComponent } from './login/login.component';
         component: HomeComponent
       },
       {
-        path: 'followers/:username', 
+        path: 'followers/:userid/:username', 
         component: GithubFollowersComponent
       },
       {
@@ -87,7 +89,9 @@ import { LoginComponent } from './login/login.component';
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
       multi: true
-    }
+    },
+    {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
+    JwtHelperService
   ],
   bootstrap: [AppComponent]
 })

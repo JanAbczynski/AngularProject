@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit {
             alert("error 404");
           } else 
           {
+            console.log(error)
             alert("Wrong login or password");
           console.log("Wrong login or password");        
           }        
