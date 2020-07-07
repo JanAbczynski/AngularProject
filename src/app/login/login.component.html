@@ -2,19 +2,21 @@
   login works!
 </p>
 <div class="container">
+  
   <h1>Log yourself</h1>
   <form>
     <div class="form-group">
-      <label for="name">Login</label>
+      <label for="name" [class.alert]=true [class.alert-danger]=invalidLogin [class.alert-info]=!invalidLogin>Login</label>
       <input #logName type="text" class="form-control" id="loginName" required>
     </div>
 
     <div class="form-group">
-      <label for="alterEgo">Password</label>
+      <label for="alterEgo" [class.alert]=true [class.alert-danger]=invalidLogin [class.alert-info]=!invalidLogin>Password</label>
       <input #pass type="password" class="form-control" id="pass">
     </div>
 
     <button (click)="login(logName.value, pass.value)" type="submit" class="btn btn-success">Submit</button>
 
+    
   </form>
 </div>

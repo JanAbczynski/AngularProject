@@ -3,8 +3,26 @@ export class User {
     // userId: number;
     // title: string;
     // body: string;
-
-    UserName: string;
+    UserLogin: string;
     UserPass: string;
-    token: string
+    UserMail: string;
+    token: string;
+    Id: number;
+
+
+    constructor(
+        UserLogin: string,
+        UserPass: string,
+        UserMail: string,
+        token: string,
+        Id: number               
+    ){
+     this.UserLogin = UserLogin;
+     this.UserPass = UserPass;
+     this.UserMail = UserMail;
+     this.token = token;
+     this.Id = Id;
+    }
+
+
 }

@@ -1,0 +1,96 @@
+<p>
+  register works!
+</p>
+
+<div>
+  <form [formGroup]="loginForm" novalidate>
+    <input type="email" formControlName="email">
+    <input type="username" formControlName="username">
+    <div> {{username.invalid}}</div>
+    <div *ngIf="username.hasError('myErr')"> Suername invalid</div>
+
+  </form>
+</div>
+
+<div>
+  <div>
+
+
+  <h1>Register yourself</h1>
+
+
+  <form #userForm="ngForm" id="forms">
+
+    userForm {{ userForm.value | json }}
+
+    {{ userModel | json}}
+    <div [class.alert]=true [class.alert-danger]=!control [class.alert-success]=control>{{ test }}</div>
+
+    <label>Login name</label>
+    <input [(ngModel)]="userModel.UserTest" name="UserTest" class="form-control" (keyup)=testTimeOut(userModel)>
+
+
+    <div class="form-group">
+      <label>Login name</label>
+      <input [(ngModel)]="userModel.UserLogin" name="UserLogin" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+      <label>password</label>
+      <input [(ngModel)]="userModel.UserPass" name="UserPass" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label>repeat password</label>
+      <input [(ngModel)]="userModel.UserPass2" name="UserPass2" class="form-control" (keyup)=validatePassword(userModel)>
+      <div *ngIf=!isPasswordSame [class.alert]=true [class.alert-danger]=true>password is not the same</div>
+    </div>
+
+    <div class="form-group">
+      <label>Name</label>
+      <input [(ngModel)]="userModel.UserName" name="UserName" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label>Surename</label>
+      <input [(ngModel)]="userModel.UserSurename" name="UserSurename" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label>Address</label>
+      <input [(ngModel)]="userModel.UserAddress" name="UserAddress" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label>City</label>
+      <input [(ngModel)]="userModel.UserCity" name="UserCity" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label>Zip code</label>
+      <input [(ngModel)]="userModel.UserZipCode" name="UserZipCode" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label>e mail</label>
+      <input [(ngModel)]="userModel.UserMail" name="UserMail" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label>Phone</label>
+      <input [(ngModel)]="userModel.UserPhoneNumber" name="UserPhoneNumber" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label>Phone2</label>
+      <input [(ngModel)]="userModel.UserPhoneNumber2" name="UserPhoneNumber2" class="form-control">
+    </div>
+
+
+    <div class="form-group">
+      <button (click)="registerForm(userModel)" type="submit" class="btn btn-success">Submit test</button>
+    </div>
+
+    
+  </form>
+</div>

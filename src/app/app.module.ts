@@ -23,7 +23,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { GithubFollowersComponent } from './github-followers/github-followers.component';
 import { LoginComponent } from './login/login.component';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
-
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -43,7 +43,8 @@ import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
     HomeComponent,
     NavbarComponent,
     GithubFollowersComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
     
   ],
   imports: [
@@ -74,6 +75,14 @@ import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
       },
       {
         path: 'login', 
+        component: LoginComponent
+      },
+      {
+        path: 'register', 
+        component: RegisterComponent
+      },
+      {
+        path: 'logout', 
         component: LoginComponent
       },
       {

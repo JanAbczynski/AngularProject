@@ -13,10 +13,14 @@
 
 <div>
   <ul>
-    <li routerLinkActive="active"><a routerLink="/followers"
+    <li *ngIf="loginService.currentUser === 'user'" routerLinkActive="active"><a routerLink="/followers"
       [queryParams]="{ page: 1, order: 'newest'}">Followers</a></li>
     <li routerLinkActive="active"><a routerLink="/posts">Posts</a></li>
-    <li routerLinkActive="active"><a routerLink="/login">Login</a></li>
+    <!-- <li *ngIf="!loginService.isLogged()" routerLinkActive="active"><a routerLink="/login">Login</a></li> -->
+    <a *ngIf="!loginService.isLogged()" routerLink="/login"><button class="btn btn-success" > login 2</button></a>
+    <a *ngIf="!loginService.isLogged()" routerLink="/register"><button class="btn btn-success" > register</button></a>
+    <!-- <button *ngIf="!loginService.isLogged()" (click)="login()" class="btn btn-success">login</button> -->
+    <button *ngIf="loginService.isLogged()" (click)="loginService.logout()" class="btn btn-success">logout</button>
   </ul>
 </div>
 </nav>
