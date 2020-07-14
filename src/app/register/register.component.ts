@@ -6,6 +6,7 @@ import { User } from './../models/user';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { map, take, debounceTime } from 'rxjs/operators'
 import { Observable, of } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 
@@ -19,22 +20,48 @@ import { Observable, of } from 'rxjs';
 export class RegisterComponent implements OnInit {
 
 
-  userModel = new User ('Name', 'qwe', 'a@2', null, null)
+  userModel = new User (null, null, null, null, null, null, null, null, null, null, null, null, null, )
   isPasswordSame = true;
   control = true;
   test = "clear"
   public form: FormGroup;
   loginForm: FormGroup;
+  errorMessage: String;
   
   
 
   constructor(
+    private router: Router,
     private registerService: RegisterService,
     private fb: FormBuilder) {
     this.form = new FormGroup({
       login: new FormControl(null, Validators.required)
     })
 
+   }
+
+   onSubmit(){
+     console.log("SUBMIT")
+     let x = this.loginForm.controls.UserMail.value
+     console.log(x)
+     var user: User
+     user = {
+       Id: null,
+      UserLogin: this.loginForm.controls.UserLogin.value,
+      UserPass: this.loginForm.controls.UserPass.value,
+      UserName: this.loginForm.controls.UserName.value,
+      UserSureName: this.loginForm.controls.UserSureName.value,
+      UserAddress: this.loginForm.controls.UserAddress.value,
+      UserCity: this.loginForm.controls.UserCity.value,
+      UserZipCode: this.loginForm.controls.UserZipCode.value,
+      UserMail: this.loginForm.controls.UserMail.value,
+      UserPhoneNumber: this.loginForm.controls.UserPhoneNumber.value,
+      UserPhoneNumber2: this.loginForm.controls.UserPhoneNumber2.value,
+      UserRole: 'role',
+      token: null,
+     }
+
+     this.registerForm(user)
    }
 
 
@@ -48,12 +75,25 @@ export class RegisterComponent implements OnInit {
     .subscribe(
       res => {
         console.log("sub: ", res)
-      }
-    )
+        this.router.navigate(['/userDetail'])
+      }, 
+      (error: Response) => {
+        if(error.status === 404){
+          console.log(error)
+          this.errorMessage = "error.error";       
+          console.log(this.errorMessage)
+          // alert("404");
+        } else {
+          alert("ERROR unxpected");
+        console.log("ERROR unxpected");        
+        }
+      } 
+    );
+    
   }
 
 
-  validatePassword(user: any){
+  validatePasswordx(user: any){
     console.log("validate pass") 
     this.check(user)
     .then(x => {
@@ -100,7 +140,7 @@ export class RegisterComponent implements OnInit {
 
 
 
-  validatePasswordx(user: any){
+  validatePassword(user: any){
     this.isPasswordSame = true
     let value1 = user.Pass2;
     setTimeout(x => {
@@ -123,20 +163,9 @@ export class RegisterComponent implements OnInit {
 
 
 
-  register(
+  register(user: User,
     regName: string,
     regPass: string){
-
-      // console.log("regname: ", regName, ", reg pass: ", regPass)
-      var user: User;
-
-      user = {
-        UserLogin: regName,
-        UserPass: regPass,
-        UserMail: '1@1.1',
-        token: null,
-        Id: null
-      }
 
       this.registerService.register(user)
       .subscribe(
@@ -154,14 +183,22 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {   
     this.loginForm = this.fb.group({
-      email: ['', [
+      UserLogin: ['login'],
+      UserPass: ['pass'],
+      UserPass2: ['pass2'],
+      UserName: ['name'],
+      UserSureName: ['Sname'],
+      UserAddress: ['address'],
+      UserCity: ['city'],
+      UserZipCode: ['zip'],
+      UserMail: ['mail@mail',[
         Validators.required,
-        Validators.email
-      ]],
-      username: ['',
-        [Validators.required],
-        [CustomValidator.username]
-      ]
+        Validators.email]
+      ],
+
+      UserPhoneNumber: ['phone'],
+      UserPhoneNumber2: ['phone2'],
+      UserRole: ['role'],
     }); 
   }
 

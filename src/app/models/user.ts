@@ -1,27 +1,50 @@
 export class User {
-    // id: number;
-    // userId: number;
-    // title: string;
-    // body: string;
+
+    Id: number;
     UserLogin: string;
     UserPass: string;
+    UserName: string;
+    UserSureName: string;
+    UserAddress: string;
+    UserCity: string;
+    UserZipCode: string;
     UserMail: string;
+    UserPhoneNumber: string;
+    UserPhoneNumber2: string;
+    UserRole: string;
     token: string;
-    Id: number;
-
+    
 
     constructor(
+        Id: number,    
         UserLogin: string,
         UserPass: string,
+        UserName: string,
+        UserSureName: string,
+        UserAddress: string,
+        UserCity: string,
+        UserZipCode: string,
         UserMail: string,
+        UserPhoneNumber: string,
+        UserPhoneNumber2: string,
+        UserRole: string,
         token: string,
-        Id: number               
+                   
     ){
+     this.Id = Id;   
      this.UserLogin = UserLogin;
      this.UserPass = UserPass;
+     this.UserName = UserName;
+     this.UserSureName = UserSureName;
+     this.UserAddress = UserAddress;
+     this.UserCity = UserCity;
+     this.UserZipCode = UserZipCode;
      this.UserMail = UserMail;
+     this.UserPhoneNumber = UserPhoneNumber;
+     this.UserPhoneNumber2 = UserPhoneNumber2;
+     this.UserRole = UserRole;    
      this.token = token;
-     this.Id = Id;
+     
     }
 
 

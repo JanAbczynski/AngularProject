@@ -1,14 +1,27 @@
-<p>
+<!-- <p>
   register works!
-</p>
-
+</p> -->
+<div *ngIf="errorMessage" [class.alert]=true [class.alert-danger]=true>
+  ccc {{ errorMessage }}
+</div>
 <div>
-  <form [formGroup]="loginForm" novalidate>
-    <input type="email" formControlName="email">
-    <input type="username" formControlName="username">
-    <div> {{username.invalid}}</div>
-    <div *ngIf="username.hasError('myErr')"> Suername invalid</div>
+  <form [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit()">
 
+    <label>User Login <input type="text" formControlName="UserLogin"></label><br>
+    <label>Password <input type="text" formControlName="UserPass"></label><br>
+    <label>Password 2 <input type="text" formControlName="UserPass2"></label><br>
+    <label>First name <input type="text" formControlName="UserName"></label><br>
+    <label>Last name <input type="text" formControlName="UserSureName"></label><br>
+    <label>Address <input type="text" formControlName="UserAddress"></label><br>
+    <label>City <input type="text" formControlName="UserCity"></label><br>
+    <label>Zip code <input type="text" formControlName="UserZipCode"></label><br>
+    <label>E mail <input type="email" formControlName="UserMail"></label><br>
+    <label>Phone number <input type="text" formControlName="UserPhoneNumber"></label><br>
+    <label>Phone alternative <input type="text" formControlName="UserPhoneNumber2"></label><br>
+    <label>User Role <input type="text" formControlName="UserRole"></label><br>
+  
+    
+    <button type="submit" [disabled]="!loginForm.valid">Submit</button>
   </form>
 </div>
 
@@ -21,10 +34,10 @@
 
   <form #userForm="ngForm" id="forms">
 
-    userForm {{ userForm.value | json }}
+    <!-- userForm {{ userForm.value | json }} -->
 
-    {{ userModel | json}}
-    <div [class.alert]=true [class.alert-danger]=!control [class.alert-success]=control>{{ test }}</div>
+    <!-- {{ userModel | json}} -->
+    <!-- <div [class.alert]=true [class.alert-danger]=!control [class.alert-success]=control>{{ test }}</div> -->
 
     <label>Login name</label>
     <input [(ngModel)]="userModel.UserTest" name="UserTest" class="form-control" (keyup)=testTimeOut(userModel)>
@@ -37,13 +50,13 @@
 
     <div class="form-group">
       <label>password</label>
-      <input [(ngModel)]="userModel.UserPass" name="UserPass" class="form-control">
+      <input [(ngModel)]="userModel.UserPass" name="UserPass" class="form-control" type="password" >
     </div>
 
     <div class="form-group">
-      <label>repeat password</label>
-      <input [(ngModel)]="userModel.UserPass2" name="UserPass2" class="form-control" (keyup)=validatePassword(userModel)>
-      <div *ngIf=!isPasswordSame [class.alert]=true [class.alert-danger]=true>password is not the same</div>
+      <label *ngIf=isPasswordSame>repeat password</label>
+      <label *ngIf=!isPasswordSame style="color:red">repeat password - repeated password is not the same</label>
+      <input [(ngModel)]="userModel.UserPass2" name="UserPass2" class="form-control" type="password" (keyup)=validatePassword(userModel)>
     </div>
 
     <div class="form-group">

@@ -31,13 +31,22 @@ export class LoginComponent implements OnInit {
 
     var user: User;
     user = 
-      {
-        UserLogin: name,
-        UserPass: pass,
-        UserMail: '1@1.1',
-        token: null,
-        Id: 69
-      }
+    {
+      Id: null,
+     UserLogin: name,
+     UserPass: pass,
+     UserName: null,
+     UserSureName: null,
+     UserAddress: null,
+     UserCity: null,
+     UserZipCode: null,
+     UserMail: null,
+     UserPhoneNumber: null,
+     UserPhoneNumber2: null,
+     UserRole: null,
+     token: null,
+    }
+
      
     this.loginService.login(user)
     .subscribe(

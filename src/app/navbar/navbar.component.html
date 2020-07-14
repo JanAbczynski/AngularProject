@@ -21,6 +21,7 @@
     <a *ngIf="!loginService.isLogged()" routerLink="/register"><button class="btn btn-success" > register</button></a>
     <!-- <button *ngIf="!loginService.isLogged()" (click)="login()" class="btn btn-success">login</button> -->
     <button *ngIf="loginService.isLogged()" (click)="loginService.logout()" class="btn btn-success">logout</button>
+    <a *ngIf="loginService.isLogged()" routerLink="/userDetail"><button class="btn btn-success" > User detail</button></a>
   </ul>
 </div>
 </nav>

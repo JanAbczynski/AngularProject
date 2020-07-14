@@ -24,6 +24,7 @@ import { GithubFollowersComponent } from './github-followers/github-followers.co
 import { LoginComponent } from './login/login.component';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { RegisterComponent } from './register/register.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { RegisterComponent } from './register/register.component';
     NavbarComponent,
     GithubFollowersComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    UserDetailComponent
     
   ],
   imports: [
@@ -84,6 +86,10 @@ import { RegisterComponent } from './register/register.component';
       {
         path: 'logout', 
         component: LoginComponent
+      },
+      {
+        path: 'userDetail', 
+        component: UserDetailComponent
       },
       {
         path: '**', 
