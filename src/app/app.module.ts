@@ -25,6 +25,8 @@ import { LoginComponent } from './login/login.component';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { RegisterComponent } from './register/register.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
+import { RecoverPassComponent } from './recover-pass/recover-pass.component';
+import { PassChangerComponent } from './pass-changer/pass-changer.component';
 
 
 @NgModule({
@@ -46,7 +48,9 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
     GithubFollowersComponent,
     LoginComponent,
     RegisterComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    RecoverPassComponent,
+    PassChangerComponent
     
   ],
   imports: [
@@ -90,6 +94,14 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
       {
         path: 'userDetail', 
         component: UserDetailComponent
+      },
+      {
+        path: 'recoverPass', 
+        component: RecoverPassComponent
+      },
+      {
+        path: 'passChanger', 
+        component: PassChangerComponent
       },
       {
         path: '**', 

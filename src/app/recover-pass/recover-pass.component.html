@@ -1,0 +1,20 @@
+<p>
+  recover-pass works!
+</p>
+<p>
+
+</p>
+  <div>
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  
+      <label>
+        Enter your email:
+        <input [readonly]="isReady" type="text" formControlName="email"> <br>
+        <label *ngIf="infoQuality && isInfo" for="email" class="alert alert-success">We sent on your email recovery code!</label>
+        <label *ngIf="!infoQuality && isInfo" for="email" class="alert alert-danger">There is no user such you</label>
+      </label>
+ 
+      <button type="submit" [disabled]="!profileForm.valid || isReady">Submit</button>
+      <!-- <button type="submit" [disabled]="!profileForm.valid">Submit</button> -->
+    </form>
+   </div>

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormBuilder, AbstractControl, FormControl, Validators, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
 import { RegisterService } from './../service/register.service';
 import { Component, OnInit } from '@angular/core';
-import { User } from './../models/user';
+import { User } from '../models/User';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { map, take, debounceTime } from 'rxjs/operators'
 import { Observable, of } from 'rxjs';
@@ -183,15 +183,15 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {   
     this.loginForm = this.fb.group({
-      UserLogin: ['login'],
-      UserPass: ['pass'],
-      UserPass2: ['pass2'],
+      UserLogin: ['john'],
+      UserPass: ['qwe'],
+      UserPass2: ['qwe'],
       UserName: ['name'],
       UserSureName: ['Sname'],
       UserAddress: ['address'],
       UserCity: ['city'],
       UserZipCode: ['zip'],
-      UserMail: ['mail@mail',[
+      UserMail: ['j.abc@wp.pl',[
         Validators.required,
         Validators.email]
       ],

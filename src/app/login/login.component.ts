@@ -1,4 +1,4 @@
-import { User } from './../models/user';
+import { User } from '../models/User';
 import { LoginService } from './../service/login.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';

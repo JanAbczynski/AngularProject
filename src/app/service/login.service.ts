@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../models/user';
+import { User } from '../models/User';
 
 @Injectable({
   providedIn: 'root'
@@ -59,6 +59,15 @@ s
 
     return jwtHelper.decodeToken(token).role;
     // return "admin";
+  }
 
+  RemindPassword(body: any){
+
+    return this.http.post(this.url + "/PasswordReminderRequest", body);
+  }
+
+  TryToChangePass(body: any){
+
+    return this.http.post(this.url + "/TryToChangePass", body);
   }
 }
