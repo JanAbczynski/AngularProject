@@ -1,3 +1,21 @@
 <p>
   pass-changer works!
 </p>
+<div *ngIf="isReadyToChange"> to będzie formularz </div>
+
+<div>
+  <form [formGroup]="passForm" (ngSubmit)="onSubmit()">
+
+    <label>
+      pass1:
+      <input [readonly]="isReady" type="text" formControlName="pass1"> <br>
+      pass2:
+      <input [readonly]="isReady" type="text" formControlName="pass2"> <br>
+      c:
+      <input [readonly]="isReady" type="text" formControlName="changeCode"> <br>
+    </label>
+
+    <button type="submit" [disabled]="!passForm.valid">Submit</button>
+    <!-- <button type="submit" [disabled]="!profileForm.valid">Submit</button> -->
+  </form>
+ </div>

@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/User';
+import { stringify } from 'querystring';
 
 @Injectable({
   providedIn: 'root'
@@ -69,5 +70,19 @@ s
   TryToChangePass(body: any){
 
     return this.http.post(this.url + "/TryToChangePass", body);
+  }
+
+  ChangePassword(body: any){
+
+    let stringedBody: string;
+    stringedBody = JSON.stringify(body)
+    return this.http.post(this.url + "/PassChanger", body);
+  }
+
+  ChangePassword2(body: any){
+
+    let stringedBody: string;
+    stringedBody = JSON.stringify(body)
+    return this.http.post(this.url + "/PassChanger2", body);
   }
 }
