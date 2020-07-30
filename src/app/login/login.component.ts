@@ -33,17 +33,17 @@ export class LoginComponent implements OnInit {
     user = 
     {
       Id: null,
-     UserLogin: name,
-     UserPass: pass,
-     UserName: null,
-     UserSureName: null,
-     UserAddress: null,
-     UserCity: null,
-     UserZipCode: null,
-     UserMail: null,
-     UserPhoneNumber: null,
-     UserPhoneNumber2: null,
-     UserRole: null,
+     userLogin: name,
+     userPass: pass,
+     userName: null,
+     userSureName: null,
+     userAddress: null,
+     userCity: null,
+     userZipCode: null,
+     userMail: null,
+     userPhoneNumber: null,
+     userPhoneNumber2: null,
+     userRole: null,
      token: null,
     }
 

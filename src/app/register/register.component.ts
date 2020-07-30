@@ -47,17 +47,17 @@ export class RegisterComponent implements OnInit {
      var user: User
      user = {
        Id: null,
-      UserLogin: this.loginForm.controls.UserLogin.value,
-      UserPass: this.loginForm.controls.UserPass.value,
-      UserName: this.loginForm.controls.UserName.value,
-      UserSureName: this.loginForm.controls.UserSureName.value,
-      UserAddress: this.loginForm.controls.UserAddress.value,
-      UserCity: this.loginForm.controls.UserCity.value,
-      UserZipCode: this.loginForm.controls.UserZipCode.value,
-      UserMail: this.loginForm.controls.UserMail.value,
-      UserPhoneNumber: this.loginForm.controls.UserPhoneNumber.value,
-      UserPhoneNumber2: this.loginForm.controls.UserPhoneNumber2.value,
-      UserRole: 'role',
+      userLogin: this.loginForm.controls.UserLogin.value,
+      userPass: this.loginForm.controls.UserPass.value,
+      userName: this.loginForm.controls.UserName.value,
+      userSureName: this.loginForm.controls.UserSureName.value,
+      userAddress: this.loginForm.controls.UserAddress.value,
+      userCity: this.loginForm.controls.UserCity.value,
+      userZipCode: this.loginForm.controls.UserZipCode.value,
+      userMail: this.loginForm.controls.UserMail.value,
+      userPhoneNumber: this.loginForm.controls.UserPhoneNumber.value,
+      userPhoneNumber2: this.loginForm.controls.UserPhoneNumber2.value,
+      userRole: 'role',
       token: null,
      }
 

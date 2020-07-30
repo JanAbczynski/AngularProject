@@ -19,11 +19,24 @@ export class UserDetailComponent implements OnInit {
   displayData  = false;
   wrongPassMessage = false;
   passwordWasChanged = false;
+  editUserDate = false;
   passForm = new FormGroup({
     oldPass: new FormControl('c',Validators.compose([Validators.required])),
     pass1: new FormControl('1',Validators.compose([Validators.required])),
     pass2: new FormControl('2',Validators.compose([Validators.required]))  
   });
+
+  userDataForm = new FormGroup({
+
+    userName: new FormControl(),
+    userSureName: new FormControl(),
+    userAddress: new FormControl(),
+    userCity: new FormControl(),
+    userZipCode: new FormControl(),
+    userMail: new FormControl(),
+    userPhoneNumber: new FormControl(),
+    userPhoneNumber2: new FormControl()
+  })
 
   constructor(
     private http: HttpClient,
@@ -36,11 +49,22 @@ export class UserDetailComponent implements OnInit {
     let totoken = this.getDecodedAccessToken(token)
     let userInfo = {"tokenCode": token}
     this.http.post<User>(this.url + "/GetUsersData", userInfo)
-    .subscribe(response => {
-      this.user = response;
+    .subscribe((res: User) => {
+      this.user = res;
+      this.FillUpForm(res)
       this.displayData = true;
-      console.log('response:', response)
     })
+  }
+
+  FillUpForm(user: User){
+    this.userDataForm.controls['userName'].setValue(user.userName);
+    this.userDataForm.controls['userSureName'].setValue(user.userSureName);
+    this.userDataForm.controls['userAddress'].setValue(user.userAddress);
+    this.userDataForm.controls['userCity'].setValue(user.userCity);
+    this.userDataForm.controls['userZipCode'].setValue(user.userZipCode);
+    this.userDataForm.controls['userMail'].setValue(user.userMail);
+    this.userDataForm.controls['userPhoneNumber'].setValue(user.userPhoneNumber);
+    this.userDataForm.controls['userPhoneNumber2'].setValue(user.userPhoneNumber2);
   }
 
   getDecodedAccessToken(token: string): any {
@@ -55,6 +79,10 @@ export class UserDetailComponent implements OnInit {
   runChangePasswordForm(){
     console.log("run")
     this.showChangePassForm  = true;
+  }
+
+  RunEditUserData(){
+    this.editUserDate = true;
   }
 
   onSubmit(){
