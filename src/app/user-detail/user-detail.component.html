@@ -4,6 +4,8 @@
   <button (click)="GetData()"> get data </button>
 
 </p>
+<div *ngIf="displayData">
+
   <div>
     Login: {{user.userLogin | json }}
   </div>
@@ -35,20 +37,27 @@
     Role: {{user.userRole | json }}
   </div>
 
-  <button *ngIf="!showChangePassForm" (click)="runChangePasswordForm()">Submit</button>
+  <button *ngIf="!showChangePassForm" (click)="runChangePasswordForm()">Change password</button>
 
+  <div style="color:green;" *ngIf="passwordWasChanged">
+    Password was changed
+  </div>
   <div *ngIf="showChangePassForm">
     <form [formGroup]="passForm" (ngSubmit)="onSubmit()">
   
       <label>
         old password:
-        <input [readonly]="isReady" type="text" formControlName="oldPass"> <br>        
+        <input [readonly]="isReady" type="text" formControlName="oldPass"> <span *ngIf="wrongPassMessage" style="color:red;">Your password is wrong</span> <br>        
         pass1:
         <input [readonly]="isReady" type="text" formControlName="pass1"> <br>
         pass2:
         <input [readonly]="isReady" type="text" formControlName="pass2"> <br>
       </label>  
-      <button type="submit" [disabled]="!passForm.valid">Submit</button>
+      <button type="submit" [disabled]="!passForm.valid">Change password</button>
 
     </form>
    </div>
+
+</div>
+
+

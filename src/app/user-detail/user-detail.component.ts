@@ -16,6 +16,9 @@ export class UserDetailComponent implements OnInit {
   url = environment.apiUrl + "/login";
   user: User;
   showChangePassForm  = false;
+  displayData  = false;
+  wrongPassMessage = false;
+  passwordWasChanged = false;
   passForm = new FormGroup({
     oldPass: new FormControl('c',Validators.compose([Validators.required])),
     pass1: new FormControl('1',Validators.compose([Validators.required])),
@@ -35,6 +38,7 @@ export class UserDetailComponent implements OnInit {
     this.http.post<User>(this.url + "/GetUsersData", userInfo)
     .subscribe(response => {
       this.user = response;
+      this.displayData = true;
       console.log('response:', response)
     })
   }
@@ -63,12 +67,23 @@ export class UserDetailComponent implements OnInit {
 
     this.loginService.ChangePassword2(body)
     .subscribe(x => {
-      console.log(x)
+      this.wrongPassMessage = false; 
+      this.passwordWasChanged = true;
+      this.showChangePassForm = false;
+      console.log("password was changed")
+      console.log("wrongPassMessage", this.wrongPassMessage)
+    }, (error: Response) => {
+     if(error.status == 401){
+      this.wrongPassMessage = true;
+      console.log("wrongPassMessage", this.wrongPassMessage)
+     }
     })
   }
 
   ngOnInit() {
+    console.log("check 1")
     this.GetData();
+    console.log("check 2")
   }
 
 }
