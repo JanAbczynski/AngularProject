@@ -1,10 +1,12 @@
 export class User {
 
     Id: number;
+    userType: string;
     userLogin: string;
     userPass: string;
     userName: string;
     userSureName: string;
+    userTaxNumber: string;
     userAddress: string;
     userCity: string;
     userZipCode: string;
@@ -17,10 +19,12 @@ export class User {
 
     constructor(
         Id: number,    
+        userType: string,
         UserLogin: string,
         UserPass: string,
         UserName: string,
         UserSureName: string,
+        UserTaxNumber: string,
         UserAddress: string,
         UserCity: string,
         UserZipCode: string,
@@ -32,10 +36,12 @@ export class User {
                    
     ){
      this.Id = Id;   
+     this.userType = userType;
      this.userLogin = UserLogin;
      this.userPass = UserPass;
      this.userName = UserName;
      this.userSureName = UserSureName;
+     this.userTaxNumber = UserTaxNumber;
      this.userAddress = UserAddress;
      this.userCity = UserCity;
      this.userZipCode = UserZipCode;

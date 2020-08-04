@@ -15,7 +15,6 @@ import { timeout } from 'rxjs/operators';
 export class LoginComponent implements OnInit {
 
   private invalidLogin = false;
-
   constructor(
     private router: Router,
     private loginService: LoginService) { }
@@ -32,11 +31,13 @@ export class LoginComponent implements OnInit {
     var user: User;
     user = 
     {
-      Id: null,
+     Id: null,
+     userType: null,
      userLogin: name,
      userPass: pass,
      userName: null,
      userSureName: null,
+     userTaxNumber: null,
      userAddress: null,
      userCity: null,
      userZipCode: null,
@@ -54,7 +55,7 @@ export class LoginComponent implements OnInit {
       {
         localStorage.setItem("token", res.token)
         console.log("token", res.token)
-        this.router.navigate(['/posts'])
+        this.router.navigate(['/userWork'])
       }, 
       (error: Response) => 
       {

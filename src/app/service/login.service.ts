@@ -45,7 +45,6 @@ s
     let isExpired = jwtHelper.isTokenExpired(token);
     if(isExpired){localStorage.removeItem('token');}
 
-    // console.log('exp: ', expirationDate, ", is ex: ", isExpired)
     return !isExpired;
   }
 
@@ -84,5 +83,14 @@ s
     let stringedBody: string;
     stringedBody = JSON.stringify(body)
     return this.http.post(this.url + "/PassChanger2", body);
+  }
+
+
+  testAuth(){
+    console.log("test")
+    var fullUrl = this.url + "/test"
+    console.log(fullUrl);
+    return this.http.get(fullUrl);
+
   }
 }

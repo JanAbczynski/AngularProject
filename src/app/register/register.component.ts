@@ -20,20 +20,23 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
 
 
-  userModel = new User (null, null, null, null, null, null, null, null, null, null, null, null, null, )
+  userModel = new User (null, null,null, null, null, null, null, null, null, null, null, null, null, null, null)
   isPasswordSame = true;
   control = true;
   test = "clear"
+  registerFinished = false
   public form: FormGroup;
   loginForm: FormGroup;
   errorMessage: String;
+  userType: String = "person"
   
   
 
   constructor(
     private router: Router,
     private registerService: RegisterService,
-    private fb: FormBuilder) {
+    private fb: FormBuilder
+    ) {
     this.form = new FormGroup({
       login: new FormControl(null, Validators.required)
     })
@@ -41,16 +44,15 @@ export class RegisterComponent implements OnInit {
    }
 
    onSubmit(){
-     console.log("SUBMIT")
-     let x = this.loginForm.controls.UserMail.value
-     console.log(x)
      var user: User
      user = {
-       Id: null,
+      Id: null,
+      userType: null,
       userLogin: this.loginForm.controls.UserLogin.value,
       userPass: this.loginForm.controls.UserPass.value,
       userName: this.loginForm.controls.UserName.value,
       userSureName: this.loginForm.controls.UserSureName.value,
+      userTaxNumber: this.loginForm.controls.UserTaxNumber.value,
       userAddress: this.loginForm.controls.UserAddress.value,
       userCity: this.loginForm.controls.UserCity.value,
       userZipCode: this.loginForm.controls.UserZipCode.value,
@@ -60,7 +62,7 @@ export class RegisterComponent implements OnInit {
       userRole: 'role',
       token: null,
      }
-
+     user.userType = this.userType.toString();
      this.registerForm(user)
    }
 
@@ -75,7 +77,8 @@ export class RegisterComponent implements OnInit {
     .subscribe(
       res => {
         console.log("sub: ", res)
-        this.router.navigate(['/userDetail'])
+        this.registerFinished =true
+        // this.router.navigate(['/login'])
       }, 
       (error: Response) => {
         if(error.status === 404){
@@ -90,6 +93,10 @@ export class RegisterComponent implements OnInit {
       } 
     );
     
+  }
+
+  test2(){
+    console.log("mouse")
   }
 
 
@@ -120,24 +127,6 @@ export class RegisterComponent implements OnInit {
   ComparePass(){
     console.log("compare password WORKS!")   
   }
-
-
-    // 
-    // setTimeout(x => {
-    //   let value2 = stringToCompare;
-    //   if(value1 == value2){  
-    //     console.log("TRUE")    
-    //     return new Promise((resolve) => {resolve})
-    //   }
-    // }, 1000)
-    
-    // return new Promise((resolve, reject) => {
-    //   setTimeout(reject, 3500)
-    //   }
-    // ) 
-  
-
-
 
 
   validatePassword(user: any){
@@ -179,14 +168,27 @@ export class RegisterComponent implements OnInit {
       this.test = user.UserPass2;
     }
 
+  SelectPrivate(){
+      console.log("select private")
+    }
 
+  onProfileChange(data: string){
+    console.log(data)
+    this.userType = data;
+  }
+
+  authTest(){
+    console.log("auth test")
+  }
 
   ngOnInit() {   
     this.loginForm = this.fb.group({
+      UserType: ['Option 1'],
       UserLogin: ['john'],
       UserPass: ['qwe'],
       UserPass2: ['qwe'],
       UserName: ['name'],
+      UserTaxNumber: ['12333'],
       UserSureName: ['Sname'],
       UserAddress: ['address'],
       UserCity: ['city'],
@@ -223,8 +225,7 @@ export class CustomValidator{
       const username = control.value.toLowerCase();
       console.log(control)
       return null;
-    }
-  
+    }  
   }
 
   public validate():boolean{
@@ -239,6 +240,10 @@ export class CustomValidator{
       return of({myErr: true})
     }
   }
+}
 
 
+export enum userType{
+  person,
+  company
 }

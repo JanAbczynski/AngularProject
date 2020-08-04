@@ -22,6 +22,8 @@
     <!-- <button *ngIf="!loginService.isLogged()" (click)="login()" class="btn btn-success">login</button> -->
     <button *ngIf="loginService.isLogged()" (click)="loginService.logout()" class="btn btn-success">logout</button>
     <a *ngIf="loginService.isLogged()" routerLink="/userDetail"><button class="btn btn-success" > User detail</button></a>
+
+    <button (click)="authTest()" class="btn btn-success">testAuth()</button>
   </ul>
 </div>
 

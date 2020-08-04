@@ -27,6 +27,8 @@ import { RegisterComponent } from './register/register.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { RecoverPassComponent } from './recover-pass/recover-pass.component';
 import { PassChangerComponent } from './pass-changer/pass-changer.component';
+import { UserWorkComponent } from './user-work/user-work.component';
+import { CompetitionComponent } from './competition/competition.component';
 
 
 @NgModule({
@@ -50,7 +52,9 @@ import { PassChangerComponent } from './pass-changer/pass-changer.component';
     RegisterComponent,
     UserDetailComponent,
     RecoverPassComponent,
-    PassChangerComponent
+    PassChangerComponent,
+    UserWorkComponent,
+    CompetitionComponent
     
   ],
   imports: [
@@ -102,6 +106,14 @@ import { PassChangerComponent } from './pass-changer/pass-changer.component';
       {
         path: 'passChanger', 
         component: PassChangerComponent
+      },
+      {
+        path: 'userWork', 
+        component: UserWorkComponent
+      },
+      {
+        path: 'competition/:id', 
+        component: CompetitionComponent
       },
       {
         path: '**', 

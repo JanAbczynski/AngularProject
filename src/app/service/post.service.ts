@@ -20,8 +20,6 @@ export class PostService {
 
   getPosts(): Observable<Post[]> {
     
-    let params = new HttpParams().set('userId', '1');
-    let headers = new HttpHeaders().set('Authorization', 'auth-token');
     let opts = {
       headers: new HttpHeaders({
       "X-Requested-With": "HttpClient"
@@ -30,10 +28,6 @@ export class PostService {
     
     console.log(opts.headers.get("X-Requested-With"))
 
-    // var xxx = this.http.get<Post[]>(this.url + '/posts');
-    // var xxx = this.http.get<Post[]>(this.url + '/posts', { params, headers });
-    // console.log(xxx)
-    //  return xxx
     return this.http.get<Post[]>(this.url, opts);
   }
 
