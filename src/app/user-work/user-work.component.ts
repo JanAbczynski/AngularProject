@@ -62,8 +62,8 @@ export class UserWorkComponent implements OnInit {
       })
   }
 
-  getAllCompetition(){
-    this.userWorkService.getAllCompetition()
+  getAllCompetitionForUser(){
+    this.userWorkService.getAllCompetitionForUser()
     .subscribe(
       competitions => {
         this.competitions = competitions;
@@ -71,7 +71,7 @@ export class UserWorkComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getAllCompetition()
+    this.getAllCompetitionForUser()
   }
 
 }

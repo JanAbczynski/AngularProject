@@ -22,7 +22,7 @@
   <button class="btn btn-success">Show all</button>
   <div *ngFor="let comp of competitions">
     <a routerLink="/competition/{{comp.id}}">{{comp.description}}</a>
- {{comp.description}} {{comp.startTime | date:'dd.MM.yyyy'}} {{comp.startTime | date:'HH : mm'}} {{comp.placeOf}} 
+ {{comp.startTime | date:'dd.MM.yyyy'}} {{comp.startTime | date:'HH : mm'}} {{comp.placeOf}} 
   </div>
  
 </div>

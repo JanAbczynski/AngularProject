@@ -1,3 +1,4 @@
+import { userType } from './../register/register.component';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -6,6 +7,7 @@ import { environment } from 'src/environments/environment.prod';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/User';
 import { stringify } from 'querystring';
+import * as jwt_decode from 'jwt-decode'
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,7 @@ import { stringify } from 'querystring';
 export class LoginService {
 
   url = environment.apiUrl + "/login";
-s
+  isCompany = false;
   constructor(
     private http: HttpClient,
     private router: Router) { }
@@ -41,6 +43,17 @@ s
     
     let jwtHelper = new JwtHelperService();
     let token = localStorage.getItem('token')
+
+    if(token != null){
+
+      if(jwt_decode(token).userType == "company"){
+        this.isCompany = true;
+      } else{
+        this.isCompany = false;
+      }
+
+    }
+
     let expirationDate = jwtHelper.getTokenExpirationDate(token)
     let isExpired = jwtHelper.isTokenExpired(token);
     if(isExpired){localStorage.removeItem('token');}

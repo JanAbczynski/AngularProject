@@ -29,6 +29,7 @@ import { RecoverPassComponent } from './recover-pass/recover-pass.component';
 import { PassChangerComponent } from './pass-changer/pass-changer.component';
 import { UserWorkComponent } from './user-work/user-work.component';
 import { CompetitionComponent } from './competition/competition.component';
+import { UserPanelComponent } from './user-panel/user-panel.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { CompetitionComponent } from './competition/competition.component';
     RecoverPassComponent,
     PassChangerComponent,
     UserWorkComponent,
-    CompetitionComponent
+    CompetitionComponent,
+    UserPanelComponent
     
   ],
   imports: [
@@ -106,6 +108,10 @@ import { CompetitionComponent } from './competition/competition.component';
       {
         path: 'passChanger', 
         component: PassChangerComponent
+      },
+      {
+        path: 'userPanel', 
+        component: UserPanelComponent
       },
       {
         path: 'userWork', 

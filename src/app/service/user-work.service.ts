@@ -23,17 +23,22 @@ export class UserWorkService {
   }
 
 
-  getAllCompetition(): Observable<Competition[]> {
-    
+  getAllCompetitionForUser(): Observable<Competition[]> {   
     let opts = {
       headers: new HttpHeaders({
       "X-Requested-With": "HttpClient"
-    })   
+      })   
     }   
-    var fullUrl = this.url + "/GetAllCompetition";
+    var fullUrl = this.url + "/GetAllCompetitionForUser";
     console.log(opts.headers.get("X-Requested-With"))
-
     return this.http.get<Competition[]>(fullUrl, opts);
+  }
+
+  getAllCompetition(): Observable<Competition[]> {  
+    
+    
+    var fullUrl = this.url + "/GetAllCompetition";
+    return this.http.get<Competition[]>(fullUrl);
   }
 
 

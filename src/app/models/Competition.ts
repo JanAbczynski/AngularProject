@@ -1,11 +1,11 @@
 export class Competition {
 
-    Id : string;
-    description : string;
-    runs : string;
-    startTime : string;
-    duration: string;
+    Id : any;
+    description : any;
+    runs : any;
+    startTime : any;
+    duration: any;
     // duration : string;
-    placeOf : string;
+    placeOf : any;
 
 }
