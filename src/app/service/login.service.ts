@@ -34,7 +34,6 @@ export class LoginService {
   }
 
   logout(){
-    console.log("navbar logout");
     localStorage.removeItem('token');
     this.router.navigate(['/']);
   }
@@ -65,10 +64,9 @@ export class LoginService {
     let token = localStorage.getItem('token');
     if (!token){return null};
     // let jwtHelper = new JwtHelperService();
-    console.log("current user")
+
 
     let jwtHelper = new JwtHelperService();
-    console.log(jwtHelper)
 
     return jwtHelper.decodeToken(token).role;
     // return "admin";
@@ -100,9 +98,7 @@ export class LoginService {
 
 
   testAuth(){
-    console.log("test")
     var fullUrl = this.url + "/test"
-    console.log(fullUrl);
     return this.http.get(fullUrl);
 
   }

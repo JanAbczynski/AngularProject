@@ -38,7 +38,6 @@ export class RecoverPassComponent implements OnInit {
     this.loginService.RemindPassword(user)
     .subscribe(res => {      
       this.isReady = true
-      console.log(this.isReady)
       
       this.isInfo = true
       this.infoQuality = true

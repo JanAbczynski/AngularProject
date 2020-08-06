@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(name: string, pass: string){
-    console.log("login: " + name + " pass: " + pass)
+    // console.log("login: " + name + " pass: " + pass)
 
     var user: User;
     user = 
@@ -54,18 +54,18 @@ export class LoginComponent implements OnInit {
       res => 
       {
         localStorage.setItem("token", res.token)
-        console.log("token", res.token)
+
         this.router.navigate(['/userWork'])
       }, 
       (error: Response) => 
       {
           if(error.status === 401)
           {           
-          console.log("Wrong login or password");            
+        
           this.setAlertField(); 
           } else 
           {
-            console.log(error)
+
             alert("error");
           }        
       }
@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
   }
 
   logout(){
-    console.log("logout");
+
   }
 
   setAlertField(){

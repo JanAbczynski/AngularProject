@@ -24,13 +24,14 @@ export class PostsComponent implements OnInit {
   getPosts(){
     this.postService.getPosts().subscribe(
       posts => 
-        {console.log("posts"); this.posts = posts}, 
+        { 
+        this.posts = posts}, 
       (error: Response) => {
         if(error.status === 500){
           alert("error 500");
         } else {
           alert("Can not load because of something...");
-          console.log("ERROR unxpected");        
+    
         }
       })
   }
@@ -42,15 +43,14 @@ export class PostsComponent implements OnInit {
     .subscribe(
       val => 
       {
-        console.log("DELETED");
+
         this.getPosts();
       }, 
       (error: Response) => {
         if(error.status === 404){
           alert("Already deleted");
         } else {
-          alert("ERROR unxpected");
-        console.log("ERROR unxpected");        
+          alert("ERROR unxpected");      
         }
 
       });
@@ -61,11 +61,11 @@ export class PostsComponent implements OnInit {
     this.postService.patchPost(post.id)
     .subscribe(val => 
       {
-        console.log("PATCHED");
+
         this.getPosts()
       }, error => {
         alert("ERROR on patch");
-        console.log("ERROR console");
+
       });
 
   }
@@ -76,18 +76,15 @@ export class PostsComponent implements OnInit {
     .subscribe(
       val => 
       {
-        console.log("PUT call successful value returned in body", val);
         this.getPosts()
       }, 
       error => {
         alert("ERROR on delete");
-        console.log("ERROR console");
+
       });    
   }
 
   delPosts(postId: number){
-    console.log("del")
-    console.log(postId)
   }
 
   createNewPost(titleInput: HTMLInputElement) {
@@ -102,8 +99,7 @@ export class PostsComponent implements OnInit {
       if(error.status === 400){
         alert("error 400")
       } else {
-        alert("ERROR on delete");
-        console.log("ERROR console");        
+        alert("ERROR on delete");   
       }
 
     });
@@ -111,13 +107,11 @@ export class PostsComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("OnInit")
     this.getPosts()
   }
 
   ngOnChange(){
-    
-    console.log("on Change")
+
   }
     
 }

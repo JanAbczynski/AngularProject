@@ -21,12 +21,9 @@ export class NavbarComponent implements OnInit {
       this.http.get("https://localhost:44336/api/Competition/test")
       .subscribe(
         res => {
-          console.log("sub: ", res)
           // this.router.navigate(['/login'])
         })
 
-
-      console.log("authTest2")
       return this.http.get("https://localhost:44336/api/login/test");
     }
 

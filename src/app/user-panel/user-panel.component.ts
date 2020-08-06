@@ -19,12 +19,10 @@ export class UserPanelComponent implements OnInit {
     this.userWorkService.addCompetition(competition)
     .subscribe(
       res => {
-        console.log("com: ", res)
       })
   }
 
   SortBy(property: string){
-    console.log(property)
     switch(property){
       case("description"):
         this.competitions.sort((a,b) => (a.description > b.description) ? 1 : -1)

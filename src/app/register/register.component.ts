@@ -68,27 +68,22 @@ export class RegisterComponent implements OnInit {
 
 
   registerForm(user: any){
-    console.log("form: ")
-    console.log("pass", user.UserPass)
-    console.log("pass2 ",user.UserPass2)
+
     this.validatePassword(user)
 
     this.registerService.register(user)
     .subscribe(
       res => {
-        console.log("sub: ", res)
+
         this.registerFinished =true
-        // this.router.navigate(['/login'])
       }, 
       (error: Response) => {
         if(error.status === 404){
-          console.log(error)
+
           this.errorMessage = "error.error";       
-          console.log(this.errorMessage)
-          // alert("404");
         } else {
           alert("ERROR unxpected");
-        console.log("ERROR unxpected");        
+     
         }
       } 
     );
@@ -96,12 +91,10 @@ export class RegisterComponent implements OnInit {
   }
 
   test2(){
-    console.log("mouse")
   }
 
 
   validatePasswordx(user: any){
-    console.log("validate pass") 
     this.check(user)
     .then(x => {
       this.ComparePass()
@@ -115,8 +108,7 @@ export class RegisterComponent implements OnInit {
       setTimeout(() => 
       {
         let value2 = user.UserPass2;
-        console.log(value1)
-        console.log(value2)
+
         if(value1 == value2)
         {  
           resolve()
@@ -125,7 +117,7 @@ export class RegisterComponent implements OnInit {
 }
 
   ComparePass(){
-    console.log("compare password WORKS!")   
+
   }
 
 
@@ -159,7 +151,6 @@ export class RegisterComponent implements OnInit {
       this.registerService.register(user)
       .subscribe(
         res => {
-          console.log(res)
         }
       )
     }
@@ -169,16 +160,13 @@ export class RegisterComponent implements OnInit {
     }
 
   SelectPrivate(){
-      console.log("select private")
     }
 
   onProfileChange(data: string){
-    console.log(data)
     this.userType = data;
   }
 
   authTest(){
-    console.log("auth test")
   }
 
   ngOnInit() {   
@@ -221,9 +209,7 @@ export class CustomValidator{
 
   static username(){
     return (control:AbstractControl) => { 
-      console.log(control.invalid)
       const username = control.value.toLowerCase();
-      console.log(control)
       return null;
     }  
   }
@@ -233,10 +219,7 @@ export class CustomValidator{
   }
 
   static MyValidator(): AsyncValidatorFn{
-    console.log('control')
     return (control: AbstractControl):Observable <ValidationErrors | null > => {
-      console.log('control 2')
-      console.log(control)  
       return of({myErr: true})
     }
   }

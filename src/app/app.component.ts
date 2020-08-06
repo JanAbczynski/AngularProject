@@ -45,7 +45,7 @@ export class AppComponent {
   }
 
   onFavoriteChange(eventArgs: {newValue: FavoriteChangedEventArgs}){
-    console.log("fovoriataa", eventArgs)
+
   }
 
   trackCourse(index, course) {

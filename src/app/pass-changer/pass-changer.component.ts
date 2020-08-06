@@ -34,7 +34,6 @@ export class PassChangerComponent implements OnInit {
 
     this.loginService.ChangePassword(body)
     .subscribe(x => {
-      console.log(x)
     })
 
   }
@@ -44,13 +43,11 @@ export class PassChangerComponent implements OnInit {
     // Note: Below 'queryParams' can be replaced with 'params' depending on your requirements
     this.activatedRoute.queryParams.subscribe(params => {
         var code = params['code'];
-        console.log(params)
+
         var codeModel = {"Code": code}
         this.loginService.TryToChangePass(codeModel)
         .subscribe( x => {
           code = x;
-          console.log(code.codeForChange);
-          console.log(code.status);
           this.isReadyToChange = true;
           this.passForm.patchValue({changeCode: codeModel.Code})
         })

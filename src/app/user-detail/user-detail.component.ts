@@ -77,7 +77,6 @@ export class UserDetailComponent implements OnInit {
   }
 
   runChangePasswordForm(){
-    console.log("run")
     this.showChangePassForm  = true;
   }
 
@@ -98,20 +97,15 @@ export class UserDetailComponent implements OnInit {
       this.wrongPassMessage = false; 
       this.passwordWasChanged = true;
       this.showChangePassForm = false;
-      console.log("password was changed")
-      console.log("wrongPassMessage", this.wrongPassMessage)
     }, (error: Response) => {
      if(error.status == 401){
       this.wrongPassMessage = true;
-      console.log("wrongPassMessage", this.wrongPassMessage)
      }
     })
   }
 
   ngOnInit() {
-    console.log("check 1")
     this.GetData();
-    console.log("check 2")
   }
 
 }

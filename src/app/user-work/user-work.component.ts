@@ -38,7 +38,6 @@ export class UserWorkComponent implements OnInit {
 
   onSubmit(){
     var competition: Competition;
-    console.log(this.createCompetition)
     competition = {
       Id : null,
       description: this.createCompetition.controls.description.value,
@@ -49,8 +48,6 @@ export class UserWorkComponent implements OnInit {
       // duration: this.createCompetition.controls.duration.value,
       placeOf: this.createCompetition.controls.placeOf.value
     }
-
-    console.log(competition)
     this.addCompetition(competition)
   }
 

@@ -1,3 +1,4 @@
+import { RunModel } from './../models/RunModel';
 import { Competition } from './../models/Competition';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
@@ -17,11 +18,13 @@ export class UserWorkService {
 
   public addCompetition (competition: Competition){
     var fullUrl = this.url + "/addCompetition";
-
-    console.log(fullUrl)
     return this.http.post(fullUrl, competition);
   }
 
+  public addRun (run: RunModel){
+    var fullUrl = this.url + "/addRun";
+    return this.http.post(fullUrl, run);
+  }
 
   getAllCompetitionForUser(): Observable<Competition[]> {   
     let opts = {
@@ -30,7 +33,6 @@ export class UserWorkService {
       })   
     }   
     var fullUrl = this.url + "/GetAllCompetitionForUser";
-    console.log(opts.headers.get("X-Requested-With"))
     return this.http.get<Competition[]>(fullUrl, opts);
   }
 
@@ -50,9 +52,16 @@ export class UserWorkService {
     })   
     }   
     var fullUrl = this.url + "/GetCompetitionById/" + id;
-    console.log(fullUrl)
-
     return this.http.get<Competition>(fullUrl, opts);
   }
 
+  getRunsForCompetition(competitionId: string): Observable<RunModel[]> {   
+    let opts = {
+      headers: new HttpHeaders({
+      "X-Requested-With": "HttpClient"
+    })   
+    }   
+    var fullUrl = this.url + "/GetRunByCompetitionId/" + competitionId;
+    return this.http.get<RunModel[]>(fullUrl, opts);
+  }
 }

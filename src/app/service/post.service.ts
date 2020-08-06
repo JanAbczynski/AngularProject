@@ -25,16 +25,12 @@ export class PostService {
       "X-Requested-With": "HttpClient"
     })   
     }
-    
-    console.log(opts.headers.get("X-Requested-With"))
-
     return this.http.get<Post[]>(this.url, opts);
   }
 
 
 
   deletePost(id){
-    console.log("delete: ", this.url +"/"+ id)
     return this.http.delete(this.url + "/" + id);
     
   }
