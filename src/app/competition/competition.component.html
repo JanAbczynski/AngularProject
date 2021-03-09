@@ -1,25 +1,33 @@
-<p>
-  competition works!
-</p>
-<div>
-  {{competition | json}}
-</div>
-<div>
-  {{competition?.description}}  {{competition?.startTime| date:'dd.MM.yyyy'}}  {{competition?.placeOf}}
-  <button class="btn btn-success" (click)="ActivateRunForm()">Create run</button>
-</div>
 
-<div *ngIf="isCreatingRun">
-  <form [formGroup]="createRun" novalidate (ngSubmit)="onSubmit()">
 
-    <label>description <input type="text" formControlName="description"></label><br>
-    <label>target <input type="text" formControlName="target" type="date"></label><br>
-    <label>noOfShots <input type="text" formControlName="noOfShots"></label><br>
-  <button type="submit">Create</button>
-  <!-- <button type="submit" [disabled]="!loginForm.valid">Submit</button> -->
-</form><br>
-</div>
-<div *ngFor="let run of runs">
-  {{run.description}} {{run.target}} {{run.noOfShots}}
-</div>
+<table border="1">
+  <tr>
+    <th>
+      Description
+    </th>
+    <th>
+      Target
+    </th>
+    <th>
+      No. of shots
+    </th>
+    <th>
+      Sign in
+    </th>
+  </tr>
+<tr *ngFor="let run of runs">
+  <td>
+    {{run.description}}
+  </td>
+  <td>
+    {{run.target}}
+  </td>
+  <td>
+    {{run.noOfShots}}
+  </td>
+  <td>
+    <button class="btn btn-success" (click)="SignIn(run.id)">sign in</button>{{run.id}}
+  </td>   
+</tr>
+</table>
 

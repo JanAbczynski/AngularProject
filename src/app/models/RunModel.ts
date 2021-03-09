@@ -1,6 +1,6 @@
 export class RunModel {
 
-    Id : any;
+    Id : string;
     competitionId : any;
     description : any;
     target : any;

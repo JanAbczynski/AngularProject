@@ -27,7 +27,6 @@ export class NavbarComponent implements OnInit {
       return this.http.get("https://localhost:44336/api/login/test");
     }
 
-
   ngOnInit() {
   }
 

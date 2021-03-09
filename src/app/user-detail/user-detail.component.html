@@ -1,5 +1,5 @@
 <p>
-  
+
   user-detail works!
   <button (click)="GetData()"> get data </button>
 
@@ -10,12 +10,12 @@
 
 
 <div *ngIf="displayData">
-  
+
   <button (click)="RunEditUserData()">Edit user data</button>
 
 
   <form [formGroup]="userDataForm" (ngSubmit)="onSubmit()">
-  
+
     <label>
   <table style="width:100%">
       <tr>
@@ -24,8 +24,8 @@
         </td>
         <td>
           <span *ngIf="!editUserDate">{{user.userName}}</span>
-          <input *ngIf="editUserDate" [readonly]=true type="text" formControlName="userName"> <br>    
-        </td> 
+          <input *ngIf="editUserDate" [readonly]=true type="text" formControlName="userName"> <br>
+        </td>
       </tr>
 
       <tr>
@@ -35,7 +35,7 @@
     <td>
       <span *ngIf="!editUserDate">{{user.userSureName}}</span>
       <input *ngIf="editUserDate" [readonly]="isReady" type="text" formControlName="userSureName" value="asd"> <br>
-    </td> 
+    </td>
   </tr>
 
   <tr>
@@ -45,7 +45,7 @@
     <td>
       <span *ngIf="!editUserDate">{{user.userAddress}}</span>
       <input *ngIf="editUserDate" [readonly]="isReady" type="text" formControlName="userAddress"> <br>
-    </td> 
+    </td>
   </tr>
 
       <tr>
@@ -55,7 +55,7 @@
     <td>
       <span *ngIf="!editUserDate">{{user.userCity}}</span>
       <input *ngIf="editUserDate" [readonly]="isReady" type="text" formControlName="userCity"> <br>
-    </td> 
+    </td>
   </tr>
 
       <tr>
@@ -65,7 +65,7 @@
     <td>
       <span *ngIf="!editUserDate">{{user.userZipCode}}</span>
       <input *ngIf="editUserDate" [readonly]="isReady" type="text" formControlName="userZipCode"> <br>
-    </td> 
+    </td>
   </tr>
 
       <tr>
@@ -75,7 +75,7 @@
     <td>
       <span *ngIf="!editUserDate">{{user.userMail}}</span>
       <input *ngIf="editUserDate" [readonly]="isReady" type="text" formControlName="userMail"> <br>
-    </td> 
+    </td>
   </tr>
 
       <tr>
@@ -85,7 +85,7 @@
     <td>
       <span *ngIf="!editUserDate">{{user.userPhoneNumber}}</span>
       <input *ngIf="editUserDate" [readonly]="isReady" type="text" formControlName="userPhoneNumber"> <br>
-    </td> 
+    </td>
   </tr>
 
       <tr>
@@ -95,12 +95,12 @@
     <td>
       <span *ngIf="!editUserDate">{{user.userPhoneNumber2}}</span>
       <input *ngIf="editUserDate" [readonly]="isReady" type="text" formControlName="userPhoneNumber2"> <br>
-    </td> 
+    </td>
   </tr>
 </table>
-    </label>  
+    </label>
     <button type="submit" [disabled]="!passForm.valid">send new data</button>
-  
+
   </form>
 
 
@@ -110,16 +110,16 @@
     Password was changed
   </div>
   <div *ngIf="showChangePassForm">
-    <form [formGroup]="passForm" (ngSubmit)="onSubmit()">
-  
+    <form [formGroup]="passForm" (ngSubmit)="onSubmitPassChange()">
+
       <label>
         old password:
-        <input [readonly]="isReady" type="text" formControlName="oldPass"> <span *ngIf="wrongPassMessage" style="color:red;">Your password is wrong</span> <br>        
+        <input [readonly]="isReady" type="text" formControlName="oldPass"> <span *ngIf="wrongPassMessage" style="color:red;">Your password is wrong</span> <br>
         pass1:
         <input [readonly]="isReady" type="text" formControlName="pass1"> <br>
         pass2:
         <input [readonly]="isReady" type="text" formControlName="pass2"> <br>
-      </label>  
+      </label>
       <button type="submit" [disabled]="!passForm.valid">Change password</button>
 
     </form>
@@ -161,7 +161,7 @@
     Role: {{user.userRole | json }}
   </div> -->
 
-  
+
 
 </div>
 

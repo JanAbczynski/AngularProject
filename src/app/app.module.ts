@@ -28,8 +28,10 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 import { RecoverPassComponent } from './recover-pass/recover-pass.component';
 import { PassChangerComponent } from './pass-changer/pass-changer.component';
 import { UserWorkComponent } from './user-work/user-work.component';
-import { CompetitionComponent } from './competition/competition.component';
 import { UserPanelComponent } from './user-panel/user-panel.component';
+import { CompetitionComponent } from './competition/competition.component';
+import { CompetitionManagerComponent } from './competition-manager/competition-manager.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 
 
 @NgModule({
@@ -56,8 +58,10 @@ import { UserPanelComponent } from './user-panel/user-panel.component';
     PassChangerComponent,
     UserWorkComponent,
     CompetitionComponent,
-    UserPanelComponent
-    
+    UserPanelComponent,
+    CompetitionManagerComponent,
+    ConfirmationComponent
+
   ],
   imports: [
     BrowserModule,
@@ -66,63 +70,71 @@ import { UserPanelComponent } from './user-panel/user-panel.component';
     HttpClientModule,
     RouterModule.forRoot([
       {
-        path: '', 
+        path: '',
         component: HomeComponent
       },
       {
-        path: 'followers/:userid/:username', 
+        path: 'followers/:userid/:username',
         component: GithubFollowersComponent
       },
       {
-        path: 'followers', 
+        path: 'followers',
         component: GithubFollowersComponent
       },
       {
-        path: 'profile/:username', 
+        path: 'profile/:username',
         component: GithubProfileComponent
       },
       {
-        path: 'posts', 
+        path: 'posts',
         component: PostsComponent
       },
       {
-        path: 'login', 
+        path: 'login',
         component: LoginComponent
       },
       {
-        path: 'register', 
+        path: 'register',
         component: RegisterComponent
       },
       {
-        path: 'logout', 
+        path: 'logout',
         component: LoginComponent
       },
       {
-        path: 'userDetail', 
+        path: 'userDetail',
         component: UserDetailComponent
       },
       {
-        path: 'recoverPass', 
+        path: 'recoverPass',
         component: RecoverPassComponent
       },
       {
-        path: 'passChanger', 
+        path: 'passChanger/:code',
         component: PassChangerComponent
       },
       {
-        path: 'userPanel', 
+        path: 'userPanel',
         component: UserPanelComponent
       },
       {
-        path: 'userWork', 
+        path: 'userWork',
         component: UserWorkComponent
       },
       {
-        path: 'competition/:id', 
+        path: 'confirmation/:code',
+        component: ConfirmationComponent
+      },
+      {
+        path: 'CompetitionManager/:id',
+        component: CompetitionManagerComponent
+      },
+      {
+        path: 'competition/:id',
         component: CompetitionComponent
       },
       {
-        path: '**', 
+        path: '**',
         component: NotFoundComponent
       },
     ])

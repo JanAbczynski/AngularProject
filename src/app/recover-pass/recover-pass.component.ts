@@ -26,26 +26,24 @@ export class RecoverPassComponent implements OnInit {
     private loginService: LoginService) { }
 
   onSubmit(){
-    
+    console.log("submit")
     var userMail = this.profileForm.value.email;
-    console.warn(userMail);
     this.sendRequestForPassword(userMail)
   }
 
   sendRequestForPassword(userMail: string){
    var user = {'UserMail': userMail}
-   
+   console.log(user)
     this.loginService.RemindPassword(user)
-    .subscribe(res => {      
+    .subscribe(res => {
       this.isReady = true
-      
       this.isInfo = true
       this.infoQuality = true
     },
       (error: Response) => {
         if(error.status == 404){
           this.isInfo = true
-          this.infoQuality = false      
+          this.infoQuality = false
         }
       }
     )

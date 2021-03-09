@@ -1,16 +1,16 @@
-import { RunModel } from '../models/RunModel';
-import { Competition } from '../models/Competition';
-import { UserWorkService } from '../service/user-work.service';
 import { Component, OnInit } from '@angular/core';
-import {Router, ActivatedRoute, Params} from '@angular/router';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { UserWorkService } from '../service/user-work.service';
+import { Competition } from '../models/Competition';
+import { FormGroup } from '@angular/forms';
+import { RunModel } from '../models/RunModel';
 
 @Component({
-  selector: 'app-competition',
-  templateUrl: './competition.component.html',
-  styleUrls: ['./competition.component.css']
+  selector: 'app-competition-manager',
+  templateUrl: './competition-manager.component.html',
+  styleUrls: ['./competition-manager.component.css']
 })
-export class CompetitionComponent implements OnInit {
+export class CompetitionManagerComponent implements OnInit {
 
   competition: Competition;
   createRun: FormGroup;
@@ -21,18 +21,7 @@ export class CompetitionComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private userWorkService: UserWorkService
-  ) 
-  { 
-    this.createRun = new FormGroup ({
-      description: new FormControl(null, Validators.required),
-      target: new FormControl(null, Validators.required),
-      noOfShots: new FormControl(null, Validators.required)
-    })
-  }
-
-  ActivateRunForm(){
-    this.isCreatingRun = true;
-  }
+  ) { }
 
   getCompetition(){
     this.userWorkService.getACompetitionById(this.competitionId)
@@ -44,6 +33,7 @@ export class CompetitionComponent implements OnInit {
       })
   }
 
+  
   getRunsForCompetition(){
     this.userWorkService.getRunsForCompetition(this.competitionId)
     .subscribe(
@@ -52,19 +42,7 @@ export class CompetitionComponent implements OnInit {
         console.log(this.runs)
       })
   }
-
-  SignIn(runId: string){
-    var run = new RunModel();
-    run.Id = runId
-    console.log(run)
-      this.userWorkService.RegisterUserInRun(run)
-      .subscribe(
-        runs => {
-
-          console.log(runs)
-        })
-  }
-
+  
   onSubmit(){
     var run: RunModel;
     run = {
@@ -80,7 +58,6 @@ export class CompetitionComponent implements OnInit {
     this.ngOnInit();
   }
 
-
   AddRun(run: RunModel){
     this.userWorkService.addRun(run)
     .subscribe(
@@ -88,6 +65,7 @@ export class CompetitionComponent implements OnInit {
         console.log("com: ", res)
       })
   }
+
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {

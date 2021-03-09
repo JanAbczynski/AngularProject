@@ -64,4 +64,10 @@ export class UserWorkService {
     var fullUrl = this.url + "/GetRunByCompetitionId/" + competitionId;
     return this.http.get<RunModel[]>(fullUrl, opts);
   }
+
+  RegisterUserInRun(run: RunModel) {
+    var fullUrl = this.url + "/RegisterUserInRun";
+    return this.http.post(fullUrl, run);
+
+  }
 }

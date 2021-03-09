@@ -7,6 +7,9 @@
 
 </div>
 
+<div *ngIf="errorMessage" class="alert alert-danger">
+  {{errorMessage}}
+</div>
 <div (mouseover)="test2()" ng-init="count=0">Mouse over me!</div>
 
 <h1>c{{count}}</h1>
@@ -18,9 +21,9 @@
     <option value="company">Company</option>
   </select><br>
 
-  
+
   <form [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit()">
- 
+
     <label>User Login <input type="text" formControlName="UserLogin"></label><br>
 
     <label>Password <input type="text" formControlName="UserPass"></label><br>
@@ -33,7 +36,7 @@
 
       <input type="text" formControlName="UserName"></label><br>
 
-    <label *ngIf="userType=='person'">Sure name 
+    <label *ngIf="userType=='person'">Sure name
       <input type="text" formControlName="UserSureName"></label><br *ngIf="userType=='person'">
 
     <label *ngIf="userType=='company'">Tax no <input type="text" formControlName="UserTaxNumber"></label><br *ngIf="userType=='company'">
@@ -51,8 +54,8 @@
     <label>Phone alternative <input type="text" formControlName="UserPhoneNumber2"></label><br>
 
     <label>User Role <input type="text" formControlName="UserRole"></label><br>
-  
-    
+
+
     <button type="submit" [disabled]="!loginForm.valid">Submit</button>
   </form>
 </div>

@@ -21,7 +21,7 @@
 <div>
   <button class="btn btn-success">Show all</button>
   <div *ngFor="let comp of competitions">
-    <a routerLink="/competition/{{comp.id}}">{{comp.description}}</a>
+    <a routerLink="/CompetitionManager/{{comp.id}}">{{comp.description}}</a>
  {{comp.startTime | date:'dd.MM.yyyy'}} {{comp.startTime | date:'HH : mm'}} {{comp.placeOf}} 
   </div>
  

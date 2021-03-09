@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 
 
 @Component({
-  
+
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
@@ -29,8 +29,8 @@ export class RegisterComponent implements OnInit {
   loginForm: FormGroup;
   errorMessage: String;
   userType: String = "person"
-  
-  
+
+
 
   constructor(
     private router: Router,
@@ -74,20 +74,21 @@ export class RegisterComponent implements OnInit {
     this.registerService.register(user)
     .subscribe(
       res => {
-
+        this.errorMessage = null;
         this.registerFinished =true
-      }, 
-      (error: Response) => {
-        if(error.status === 404){
+        setTimeout(() => {this.router.navigate(['/'])},15000)
 
-          this.errorMessage = "error.error";       
+      },
+      (error: Response) => {
+        if(error.status === 409){
+          console.log(error)
+          this.errorMessage = JSON.parse(JSON.stringify(error)).error;
         } else {
           alert("ERROR unxpected");
-     
         }
-      } 
+      }
     );
-    
+
   }
 
   test2(){
@@ -104,13 +105,13 @@ export class RegisterComponent implements OnInit {
 
   check(user: any): Promise<boolean> {
     let value1 = user.UserPass2;
-    return new Promise( resolve => 
-      setTimeout(() => 
+    return new Promise( resolve =>
+      setTimeout(() =>
       {
         let value2 = user.UserPass2;
 
         if(value1 == value2)
-        {  
+        {
           resolve()
         }
       },3000))
@@ -134,8 +135,8 @@ export class RegisterComponent implements OnInit {
         } else {
           this.isPasswordSame = false;
         }
-      }          
-    },3000) 
+      }
+    },3000)
   }
 
   runTest(){
@@ -151,11 +152,23 @@ export class RegisterComponent implements OnInit {
       this.registerService.register(user)
       .subscribe(
         res => {
+        },
+        (error: Response) =>
+        {
+          console.log(error)
+          console.log("error409")
+            if(error.status === 409)
+            {
+              console.log("409")
+            } else
+            {
+              alert("error");
+            }
         }
       )
     }
 
-  onNameChange(user: any){      
+  onNameChange(user: any){
       this.test = user.UserPass2;
     }
 
@@ -169,7 +182,7 @@ export class RegisterComponent implements OnInit {
   authTest(){
   }
 
-  ngOnInit() {   
+  ngOnInit() {
     this.loginForm = this.fb.group({
       UserType: ['Option 1'],
       UserLogin: ['john'],
@@ -189,7 +202,7 @@ export class RegisterComponent implements OnInit {
       UserPhoneNumber: ['phone'],
       UserPhoneNumber2: ['phone2'],
       UserRole: ['role'],
-    }); 
+    });
   }
 
   get email(){
@@ -208,10 +221,10 @@ export class RegisterComponent implements OnInit {
 export class CustomValidator{
 
   static username(){
-    return (control:AbstractControl) => { 
+    return (control:AbstractControl) => {
       const username = control.value.toLowerCase();
       return null;
-    }  
+    }
   }
 
   public validate():boolean{

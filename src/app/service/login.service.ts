@@ -30,7 +30,7 @@ export class LoginService {
     // console.log(this.url + "/postlogin");
 
     return this.http.post<User>(this.url + "/postlogin", user);
- 
+
   }
 
   logout(){
@@ -39,7 +39,7 @@ export class LoginService {
   }
 
   isLogged(){
-    
+
     let jwtHelper = new JwtHelperService();
     let token = localStorage.getItem('token')
 
@@ -73,8 +73,8 @@ export class LoginService {
   }
 
   RemindPassword(body: any){
-
-    return this.http.post(this.url + "/PasswordReminderRequest", body);
+    console.log(this.url + "/RemindPassword")
+    return this.http.post(this.url + "/RemindPassword", body);
   }
 
   TryToChangePass(body: any){
@@ -86,7 +86,7 @@ export class LoginService {
 
     let stringedBody: string;
     stringedBody = JSON.stringify(body)
-    return this.http.post(this.url + "/PassChanger", body);
+    return this.http.post(this.url + "/PassChangerFromPanel", body);
   }
 
   ChangePassword2(body: any){
@@ -96,6 +96,16 @@ export class LoginService {
     return this.http.post(this.url + "/PassChanger2", body);
   }
 
+  update(){
+    console.log("update")
+    var body = {"x": "y"}
+    var fullUrl = this.url + "/update"
+    console.log(fullUrl)
+    this.http.post(fullUrl, null)
+    .subscribe(
+      res => {}
+    );
+  }
 
   testAuth(){
     var fullUrl = this.url + "/test"

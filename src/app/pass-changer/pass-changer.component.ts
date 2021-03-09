@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import { LoginService } from './../service/login.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 
 @Component({
@@ -12,6 +12,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class PassChangerComponent implements OnInit {
 
   // code: Code;
+  passsTheSame:boolean = false;
   isReadyToChange = false
   passForm = new FormGroup({
     pass1: new FormControl('1',Validators.compose([Validators.required])),
@@ -20,8 +21,9 @@ export class PassChangerComponent implements OnInit {
   });
 
   constructor(
-    private activatedRoute: ActivatedRoute, 
-    private loginService: LoginService
+    private activatedRoute: ActivatedRoute,
+    private loginService: LoginService,
+    private fb: FormBuilder
     ) {
      }
 
@@ -30,36 +32,35 @@ export class PassChangerComponent implements OnInit {
       "userPass": this.passForm.value.pass1,
       "code": this.passForm.value.changeCode
     }
-
-
     this.loginService.ChangePassword(body)
     .subscribe(x => {
     })
+  }
 
+  OnChanges(){
+    this.passForm.valueChanges.subscribe(val => {
+      this.passsTheSame = false;
+      if(this.passForm.value.pass1 == this.passForm.value.pass2){
+        this.passsTheSame = true;
+      }
+    })
   }
 
 
   ngOnInit() {
     // Note: Below 'queryParams' can be replaced with 'params' depending on your requirements
-    this.activatedRoute.queryParams.subscribe(params => {
-        var code = params['code'];
-
-        var codeModel = {"Code": code}
-        this.loginService.TryToChangePass(codeModel)
-        .subscribe( x => {
-          code = x;
-          this.isReadyToChange = true;
-          this.passForm.patchValue({changeCode: codeModel.Code})
+    this.activatedRoute.params.subscribe(params => {
+        console.log(params.code);
+        this.passForm = this.fb.group({
+          pass1: ['john', [
+            Validators.required]],
+          pass2: ['john2', [
+            Validators.required]],
+          changeCode: [params.code],
         })
       });
+
+      this.OnChanges();
   }
 
 }
-
-// export class Code{
-
-//     value: string;
-
-//   constructor(){}
-
-// }

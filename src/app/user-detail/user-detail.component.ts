@@ -23,7 +23,7 @@ export class UserDetailComponent implements OnInit {
   passForm = new FormGroup({
     oldPass: new FormControl('c',Validators.compose([Validators.required])),
     pass1: new FormControl('1',Validators.compose([Validators.required])),
-    pass2: new FormControl('2',Validators.compose([Validators.required]))  
+    pass2: new FormControl('2',Validators.compose([Validators.required]))
   });
 
   userDataForm = new FormGroup({
@@ -84,17 +84,18 @@ export class UserDetailComponent implements OnInit {
     this.editUserDate = true;
   }
 
-  onSubmit(){
+  onSubmitPassChange(){
     var body = {
       "userPass": this.passForm.value.pass1,
       "oldPass": this.passForm.value.oldPass,
       "token": localStorage.getItem("token")
     }
 
+    // console.log("xxx");
 
-    this.loginService.ChangePassword2(body)
+    this.loginService.ChangePassword(body)
     .subscribe(x => {
-      this.wrongPassMessage = false; 
+      this.wrongPassMessage = false;
       this.passwordWasChanged = true;
       this.showChangePassForm = false;
     }, (error: Response) => {

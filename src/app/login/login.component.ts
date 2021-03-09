@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private loginService: LoginService) { }
-    
+
 
 
 
@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     // console.log("login: " + name + " pass: " + pass)
 
     var user: User;
-    user = 
+    user =
     {
      Id: null,
      userType: null,
@@ -48,26 +48,27 @@ export class LoginComponent implements OnInit {
      token: null,
     }
 
-     
+
     this.loginService.login(user)
     .subscribe(
-      res => 
+      res =>
       {
         localStorage.setItem("token", res.token)
 
         this.router.navigate(['/userWork'])
-      }, 
-      (error: Response) => 
+      },
+      (error: Response) =>
       {
-          if(error.status === 401)
-          {           
-        
-          this.setAlertField(); 
-          } else 
+        console.log("error409")
+          if(error.status === 409)
+          {
+            console.log("409")
+          this.setAlertField();
+          } else
           {
 
             alert("error");
-          }        
+          }
       }
     )
 
@@ -78,11 +79,11 @@ export class LoginComponent implements OnInit {
   }
 
   setAlertField(){
-    this.invalidLogin = true;  
+    this.invalidLogin = true;
     setTimeout(() => {
-    this.invalidLogin = false;  
+    this.invalidLogin = false;
     }, 2000)
-    
+
   }
 
 }
