@@ -32,9 +32,18 @@ export class PassChangerComponent implements OnInit {
       "userPass": this.passForm.value.pass1,
       "code": this.passForm.value.changeCode
     }
+
+      console.log("404")
     this.loginService.ChangePassword(body)
     .subscribe(x => {
-    })
+    }, (error: Response) =>
+      {
+        if(error.status === 404)
+        {
+          console.log("404")
+        }
+      }
+    )
   }
 
   OnChanges(){
@@ -52,9 +61,9 @@ export class PassChangerComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
         console.log(params.code);
         this.passForm = this.fb.group({
-          pass1: ['john', [
+          pass1: ['', [
             Validators.required]],
-          pass2: ['john2', [
+          pass2: ['', [
             Validators.required]],
           changeCode: [params.code],
         })

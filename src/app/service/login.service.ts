@@ -23,12 +23,6 @@ export class LoginService {
 
   login(user: User){
 
-
-    // console.log(user);
-    // console.log(user.UserName);
-    // console.log(user.UserPass);
-    // console.log(this.url + "/postlogin");
-
     return this.http.post<User>(this.url + "/postlogin", user);
 
   }
@@ -86,7 +80,16 @@ export class LoginService {
 
     let stringedBody: string;
     stringedBody = JSON.stringify(body)
-    return this.http.post(this.url + "/PassChangerFromPanel", body);
+    console.log(stringedBody)
+    let fullUrl :string;
+    if(body.hasOwnProperty('code')){
+      fullUrl = this.url + "/PassChanger";
+    }else{
+      fullUrl = this.url + "/PassChangerFromPanel";
+    }
+    console.log("post")
+
+    return this.http.post(fullUrl, body);
   }
 
   ChangePassword2(body: any){

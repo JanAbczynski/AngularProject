@@ -12,7 +12,7 @@
       pass2:
       <input [readonly]="isReady" type="text" formControlName="pass2"> <br>
       c:
-      <input [readonly]="isReady" hidden type="text" formControlName="changeCode"> <br>
+      <input [readonly]="isReady"  type="text" formControlName="changeCode"> <br>
     </label>
 
     <button type="submit" [disabled]="!passForm.valid || !passsTheSame">Submit</button>

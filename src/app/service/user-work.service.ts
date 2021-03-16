@@ -17,7 +17,7 @@ export class UserWorkService {
   ) { }
 
   public addCompetition (competition: Competition){
-    var fullUrl = this.url + "/addCompetition";
+    var fullUrl = this.url + "/AddCompetition";
     return this.http.post(fullUrl, competition);
   }
 
@@ -26,41 +26,41 @@ export class UserWorkService {
     return this.http.post(fullUrl, run);
   }
 
-  getAllCompetitionForUser(): Observable<Competition[]> {   
+  getAllCompetitionForUser(): Observable<Competition[]> {
     let opts = {
       headers: new HttpHeaders({
       "X-Requested-With": "HttpClient"
-      })   
-    }   
+      })
+    }
     var fullUrl = this.url + "/GetAllCompetitionForUser";
     return this.http.get<Competition[]>(fullUrl, opts);
   }
 
-  getAllCompetition(): Observable<Competition[]> {  
-    
-    
+  getAllCompetition(): Observable<Competition[]> {
+
+
     var fullUrl = this.url + "/GetAllCompetition";
     return this.http.get<Competition[]>(fullUrl);
   }
 
 
   getACompetitionById(id: string): Observable<Competition> {
-    
+
     let opts = {
       headers: new HttpHeaders({
       "X-Requested-With": "HttpClient"
-    })   
-    }   
+    })
+    }
     var fullUrl = this.url + "/GetCompetitionById/" + id;
     return this.http.get<Competition>(fullUrl, opts);
   }
 
-  getRunsForCompetition(competitionId: string): Observable<RunModel[]> {   
+  getRunsForCompetition(competitionId: string): Observable<RunModel[]> {
     let opts = {
       headers: new HttpHeaders({
       "X-Requested-With": "HttpClient"
-    })   
-    }   
+    })
+    }
     var fullUrl = this.url + "/GetRunByCompetitionId/" + competitionId;
     return this.http.get<RunModel[]>(fullUrl, opts);
   }

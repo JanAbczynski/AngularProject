@@ -66,7 +66,6 @@ export class LoginComponent implements OnInit {
           this.setAlertField();
           } else
           {
-
             alert("error");
           }
       }
