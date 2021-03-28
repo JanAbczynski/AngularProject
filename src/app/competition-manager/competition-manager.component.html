@@ -1,20 +1,60 @@
 
+
+<div *ngFor="let run of runs">{{run.description}} {{run.noOfShots}}
+  <button (click)="DeleteRun(run.id)">Delete</button>
+ </div>
+
 <div>
-  {{competition?.description}}  {{competition?.startTime| date:'dd.MM.yyyy'}}  {{competition?.placeOf}}
-  <button class="btn btn-success" (click)="ActivateRunForm()">Create run</button>
+ <button *ngIf="!isCreatingRun"  class="btn btn-success" (click)="ActivateRunForm()">Create run</button>
+  <div *ngIf="isCreatingRun">
+    <p>  RUN CREATOR:</p>
+  </div>
+
 </div>
 
 <div *ngIf="isCreatingRun">
+  <form [formGroup]="createRun" novalidate (ngSubmit)="onSubmitRun()">
+    <label>description <input type="text" formControlName="description"></label><br>
+    <label>noOfShots <input type="text" formControlName="noOfShots"></label><br>
+    <label>target <input type="text" formControlName="target"readonly style="background-color: #e5e5e5"></label> <br>
+   <!-- <div (click)="ActivateTargetForm()">Add new targett</div> -->
+<div *ngFor="let x of targets">
+  <input #target2 id="{{x.id}}" type="radio" name="targetControl" (click)="SelectTarget(x.id)"/>   {{x.targetName}}<br>
+  <img src="assets/graph/targets/{{x.id}}.jpg" alt="{{x.targetName}}" width="100" height="100">
+  <!-- {{x.id}}
+  {{x.targetName}}
+  a -->
+
+</div>
+<button type="submit">Create</button><button (click)="ActivateRunForm()">Cancel</button>
+</form><br>
+
+</div>
+
+
+
+
+
+<!-- <div *ngIf="isCreatingTarget"> -->
+  <!-- <div>
+  <input  type="text" formControlName="s4">
   <form [formGroup]="createRun" novalidate (ngSubmit)="onSubmit()">
 
-    <label>description <input type="text" formControlName="description"></label><br>
-    <label>target <input type="text" formControlName="target" type="date"></label><br>
+    <label>Target name <input type="text" formControlName="description"></label><br>
     <label>noOfShots <input type="text" formControlName="noOfShots"></label><br>
-  <button type="submit">Create</button>
+    <label>target <input type="text" formControlName="target"></label><br>
+    <label *ngFor="let i of [].constructor(2)" >possible shoots
 
-</form><br>
-</div>
-<table border="1">
+
+      <input  type="text" formControlName="s1">
+      <input  type="text" formControlName="s1">
+
+    </label><br>
+    <button type="submit">Create</button>
+  </form>
+  <br>
+</div><input  type="text" formControlName="s1"> -->
+<!-- <table border="1">
   <tr>
     <th>
       Description
@@ -41,7 +81,23 @@
   </td>
   <td>
     <button class="btn btn-success" (click)="ActivateRunForm()">detail</button>
-  </td>   
+  </td>
 </tr>
-</table>
+</table> -->
 
+
+
+
+    <!-- <table>
+      <tr>
+        <td> <label>possibleShots<input *ngFor="let i of [].constructor(noOfShots);let y=index" type="text" formControlName=possibleShots-{{y}}  size="1"></label></td>
+        <td><div (click)="AddShot()">Add</div></td>
+      </tr>
+    </table>
+
+    <table>
+      <tr>
+        <td *ngFor="let i of [].constructor(noOfShots);let x=index"><input type="text" size="1" id = {{x}}></td>
+        <td><div (click)="AddShot()">Add</div></td>
+      </tr>
+    </table> -->

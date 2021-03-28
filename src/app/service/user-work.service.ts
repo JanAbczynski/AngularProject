@@ -1,3 +1,4 @@
+import { TargetModel } from './../models/TargetModel';
 import { RunModel } from './../models/RunModel';
 import { Competition } from './../models/Competition';
 import { Injectable } from '@angular/core';
@@ -59,7 +60,7 @@ export class UserWorkService {
     let opts = {
       headers: new HttpHeaders({
       "X-Requested-With": "HttpClient"
-    })
+      })
     }
     var fullUrl = this.url + "/GetRunByCompetitionId/" + competitionId;
     return this.http.get<RunModel[]>(fullUrl, opts);
@@ -69,5 +70,10 @@ export class UserWorkService {
     var fullUrl = this.url + "/RegisterUserInRun";
     return this.http.post(fullUrl, run);
 
+  }
+
+  GetTargets(body: any){
+    var fullUrl = this.url + "/FindUserTargetsByToken";
+    return this.http.post<TargetModel[]>(fullUrl, body);
   }
 }

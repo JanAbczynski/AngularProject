@@ -48,6 +48,7 @@ export class UserDetailComponent implements OnInit {
     let token = localStorage.getItem("token").toString();
     let totoken = this.getDecodedAccessToken(token)
     let userInfo = {"tokenCode": token}
+    console.log(userInfo.tokenCode)
     this.http.post<User>(this.url + "/GetUsersData", userInfo)
     .subscribe((res: User) => {
       this.user = res;
@@ -90,9 +91,6 @@ export class UserDetailComponent implements OnInit {
       "oldPass": this.passForm.value.oldPass,
       "token": localStorage.getItem("token")
     }
-
-    // console.log("xxx");
-
     this.loginService.ChangePassword(body)
     .subscribe(x => {
       this.wrongPassMessage = false;

@@ -10,14 +10,14 @@ import { FormGroup, FormBuilder, AbstractControl, FormControl, Validators, Async
 })
 export class UserWorkComponent implements OnInit {
 
-  isCreatingCompetition = false  
+  isCreatingCompetition = false
   createCompetition: FormGroup;
   competitions : Competition[];
 
   constructor(
     private fb: FormBuilder,
-    private userWorkService: UserWorkService) 
-  { 
+    private userWorkService: UserWorkService)
+  {
     this.createCompetition = new FormGroup ({
       description: new FormControl(null, Validators.required),
       startTime: new FormControl(null, Validators.required),
@@ -33,7 +33,7 @@ export class UserWorkComponent implements OnInit {
       this.isCreatingCompetition = false
     }else{
       this.isCreatingCompetition = true
-    } 
+    }
   }
 
   onSubmit(){
@@ -44,8 +44,6 @@ export class UserWorkComponent implements OnInit {
       runs: null,
       duration: this.createCompetition.controls.dur.value,
       startTime: this.createCompetition.controls.startTime.value,
-      // duration: null,
-      // duration: this.createCompetition.controls.duration.value,
       placeOf: this.createCompetition.controls.placeOf.value
     }
     this.addCompetition(competition)
@@ -56,6 +54,8 @@ export class UserWorkComponent implements OnInit {
     .subscribe(
       res => {
         console.log("com: ", res)
+        this.createCompetition.reset();
+        this.isCreatingCompetition = false
       })
   }
 
