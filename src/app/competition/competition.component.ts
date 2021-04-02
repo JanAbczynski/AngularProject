@@ -72,9 +72,9 @@ export class CompetitionComponent implements OnInit {
             var x = JSON.parse(JSON.stringify(error)).error;
             console.log(x)
             console.log(x.id)
-            console.log(x.messege)
+            console.log(x.message)
             this.buttonId = x.id;
-            this.buttonMessage = x.messege;
+            this.buttonMessage = x.message;
             setTimeout(()=>{
               this.buttonId = "";
             }, 3000)

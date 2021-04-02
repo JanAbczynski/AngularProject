@@ -112,7 +112,7 @@ export class RegisterComponent implements OnInit {
 
         if(value1 == value2)
         {
-          resolve()
+          // resolve()
         }
       },3000))
 }
