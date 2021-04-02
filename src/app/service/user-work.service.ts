@@ -76,4 +76,17 @@ export class UserWorkService {
     var fullUrl = this.url + "/FindUserTargetsByToken";
     return this.http.post<TargetModel[]>(fullUrl, body);
   }
+
+  GetRegistredUsersByRunId(runId){
+    let opts = {
+      headers: new HttpHeaders({
+      "X-Requested-With": "HttpClient"
+      })
+    }
+    var runModel = new RunModel();
+    runModel.Id =  runId;
+
+    var fullUrl = this.url + "/GetRegistredUsersByRunId";
+    return this.http.post<TargetModel[]>(fullUrl, runModel);
+  }
 }

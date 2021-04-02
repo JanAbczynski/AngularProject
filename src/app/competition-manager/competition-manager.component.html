@@ -1,7 +1,9 @@
 
 
-<div *ngFor="let run of runs">{{run.description}} {{run.noOfShots}}
-  <button (click)="DeleteRun(run.id)">Delete</button>
+<div mat-raised-button *ngFor="let run of runs">
+  <a routerLink="/runManager/{{run.id}}">{{run.description}} </a>{{run.noOfShots}}
+  <!-- <button  mat-raised-button (click)="DeleteRun(run.id)">Delete</button> -->
+  <button mat-raised-button (click)="dialogOpen('aaa')" >delete</button>
  </div>
 
 <div>

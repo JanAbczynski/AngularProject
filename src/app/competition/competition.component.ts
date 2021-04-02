@@ -17,12 +17,14 @@ export class CompetitionComponent implements OnInit {
   isCreatingRun = false;
   competitionId: string;
   runs: RunModel[];
+  buttonId = "";
+  buttonMessage = "";
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private userWorkService: UserWorkService
-  ) 
-  { 
+  )
+  {
     this.createRun = new FormGroup ({
       description: new FormControl(null, Validators.required),
       target: new FormControl(null, Validators.required),
@@ -61,8 +63,25 @@ export class CompetitionComponent implements OnInit {
       .subscribe(
         runs => {
 
-          console.log(runs)
-        })
+        }, (error: Response) =>
+        {
+          if(error.status === 409)
+          {
+            // console.log(error.error)
+
+            var x = JSON.parse(JSON.stringify(error)).error;
+            console.log(x)
+            console.log(x.id)
+            console.log(x.messege)
+            this.buttonId = x.id;
+            this.buttonMessage = x.messege;
+            setTimeout(()=>{
+              this.buttonId = "";
+            }, 3000)
+          }
+        }
+
+        )
   }
 
   onSubmit(){
@@ -94,7 +113,7 @@ export class CompetitionComponent implements OnInit {
 
       this.competitionId = params.id;
       this.getCompetition();
-      
+
     })
   }
 

@@ -56,6 +56,7 @@ export class UserWorkComponent implements OnInit {
         console.log("com: ", res)
         this.createCompetition.reset();
         this.isCreatingCompetition = false
+        this.getAllCompetitionForUser()
       })
   }
 

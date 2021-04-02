@@ -1,3 +1,4 @@
+import { DeletaDialogComponent } from './../deleta-dialog/deleta-dialog.component';
 import { TargetModel } from './../models/TargetModel';
 import { UserWorkService } from './../service/user-work.service';
 import { Component, OnInit } from '@angular/core';
@@ -5,6 +6,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Competition } from '../models/Competition';
 import { FormGroup, FormBuilder, AbstractControl, FormControl, Validators, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
 import { RunModel } from '../models/RunModel';
+import { MatDialog } from '@angular/material';
+
 
 @Component({
   selector: 'app-competition-manager',
@@ -25,6 +28,7 @@ export class CompetitionManagerComponent implements OnInit {
   targetsX = [1, 3, 4];
 
   constructor(
+    public dialog: MatDialog,
     private activatedRoute: ActivatedRoute,
     private userWorkService: UserWorkService
   ) {
@@ -46,6 +50,15 @@ export class CompetitionManagerComponent implements OnInit {
 
   }
 
+  dialogOpen(x: any){
+    console.log(x)
+
+    let dialogRef = this.dialog.open(DeletaDialogComponent, {disableClose: true, data: {id: "x"}});
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result)
+    })
+  }
 
   ActivateRunForm(){
     if(!this.isCreatingRun){
@@ -74,9 +87,12 @@ export class CompetitionManagerComponent implements OnInit {
 
 
   getRunsForCompetition(){
+    console.log("getRunsForCompetition()")
     this.userWorkService.getRunsForCompetition(this.competitionId)
     .subscribe(
+
       runs => {
+        console.log("getRunsForCompetition().subscribe")
         this.runs = runs;
         // console.log(this.runs)
       })
@@ -93,8 +109,8 @@ export class CompetitionManagerComponent implements OnInit {
     }
     this.AddRun(run);
     this.isCreatingRun = false;
+    this.createRun.reset();
     this.ngOnInit();
-    this.getRunsForCompetition()
 
   }
 
@@ -108,6 +124,7 @@ export class CompetitionManagerComponent implements OnInit {
     .subscribe(
       res => {
         console.log("com: ", res)
+        this.getRunsForCompetition()
       })
   }
 

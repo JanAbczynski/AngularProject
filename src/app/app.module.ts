@@ -1,3 +1,4 @@
+import { RunManagerComponent } from './run-manager/run-manager.component';
 import { TokenInterceptorService } from './service/token-interceptor.service';
 import { PostService } from './service/post.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -32,6 +33,9 @@ import { UserPanelComponent } from './user-panel/user-panel.component';
 import { CompetitionComponent } from './competition/competition.component';
 import { CompetitionManagerComponent } from './competition-manager/competition-manager.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
+import { MatDialogModule } from '@angular/material';
+import { DeletaDialogComponent } from './deleta-dialog/deleta-dialog.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -60,11 +64,16 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
     CompetitionComponent,
     UserPanelComponent,
     CompetitionManagerComponent,
-    ConfirmationComponent
+    ConfirmationComponent,
+    DeletaDialogComponent,
+    RunManagerComponent
 
   ],
+  entryComponents:[DeletaDialogComponent],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
+    MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -132,6 +141,10 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
       {
         path: 'competition/:id',
         component: CompetitionComponent
+      },
+      {
+        path: 'runManager/:id',
+        component: RunManagerComponent
       },
       {
         path: '**',
